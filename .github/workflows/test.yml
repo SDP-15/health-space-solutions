@@ -21,18 +21,33 @@ jobs:
       - name: Install Node.js and NPM
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: npm
 
-      - name: npm install
+      - name: yarn
         run: |
-          npm install
+          yarn
 
-      - name: npm test
+      - name: package
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm run package
-          npm run lint
-          npm exec tsc
-          npm test
+          yarn package
+
+      - name: lint
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn lint
+      
+      - name: compile
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn tsc
+      
+      - name: test
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn test
