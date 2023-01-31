@@ -18,15 +18,11 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v3
 
-      - name: Install Node.js and NPM
+      - name: Install Node.js and Yarn
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: npm
-
-      - name: yarn
-        run: |
-          yarn
+          cache: yarn
 
       - name: package
         env:
