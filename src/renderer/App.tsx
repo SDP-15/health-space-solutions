@@ -1,40 +1,29 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
+import { LineChart, XAxis, YAxis, CartesianGrid, Line } from 'recharts'
 import './App.css';
+
+const data = [{name: 'Monday', score: 400},
+              {name: 'Tuesday', score: 100},
+              {name: 'Wednesday', score: 2},
+              {name: 'Thursday', score: 500},
+              {name: 'Friday', score: 8},
+              {name: 'Saturday', score: 12},
+              {name: 'Sunday', score: 1233},];
 
 const Hello = () => {
   return (
     <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
+      <LineChart
+        width={800}
+        height={400}
+        data={data}
+        margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+      >
+        <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
+        <XAxis dataKey="name" />
+        <YAxis dataKey="score" />
+        <Line type="monotone" dataKey="score" stroke="#fff" yAxisId={0} />
+      </LineChart>
     </div>
   );
 };
