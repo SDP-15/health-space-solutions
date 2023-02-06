@@ -1,5 +1,5 @@
 ## Prerequisites
-Nodev v18
+Node v18
 
 ## Install
 
