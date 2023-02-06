@@ -1,4 +1,4 @@
-## Prerequesits
+## Prerequisites
 Nodev v18
 
 ## Install
