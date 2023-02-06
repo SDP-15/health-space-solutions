@@ -1,25 +1,20 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Row,
-  Column,
-  FooterLink,
-  Heading,
-} from './FooterStyles';
+import { GiOfficeChair } from 'react-icons/gi';
+import { Box, Container, Row, FooterLink } from './FooterStyles';
+
+import CompanyLogo from '../../assets/CompanyLogo';
 
 function Footer() {
   return (
     <Box>
       <Container>
         <Row>
-          <FooterLink href="#">
-            <i className="fab fa-instagram">
-              <span style={{ marginLeft: '10px' }}>Instagram</span>
-            </i>
+          {/* <CompanyLogo /> */}
+          <FooterLink href="google.com">
+            <GiOfficeChair size="3em" />
           </FooterLink>
 
-          <Column>
+          {/* <Column>
             <Heading>About Us</Heading>
             <FooterLink href="#">Aim</FooterLink>
             <FooterLink href="#">Vision</FooterLink>
@@ -45,7 +40,7 @@ function Footer() {
                 <span style={{ marginLeft: '10px' }}>Youtube</span>
               </i>
             </FooterLink>
-          </Column>
+          </Column> */}
         </Row>
       </Container>
     </Box>
