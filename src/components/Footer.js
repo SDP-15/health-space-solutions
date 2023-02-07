@@ -9,9 +9,12 @@ function Footer() {
     <Box>
       <Container>
         <Row>
-          {/* <CompanyLogo /> */}
+          {/* <FooterLink href="google.com">
+            <CompanyLogo size="50px" />
+          </FooterLink> */}
+
           <FooterLink href="google.com">
-            <GiOfficeChair size="3em" />
+            <GiOfficeChair size="50px" />
           </FooterLink>
 
           {/* <Column>
