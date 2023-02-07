@@ -1,5 +1,6 @@
 import React from 'react';
 import { GiOfficeChair } from 'react-icons/gi';
+import { AiFillEye } from 'react-icons/ai';
 import { Box, Container, Row, FooterLink } from './FooterStyles';
 
 import CompanyLogo from '../../assets/CompanyLogo';
@@ -15,6 +16,10 @@ function Footer() {
 
           <FooterLink href="google.com">
             <GiOfficeChair size="50px" />
+          </FooterLink>
+
+          <FooterLink href="google.com">
+            <AiFillEye size="50px" />
           </FooterLink>
 
           {/* <Column>
