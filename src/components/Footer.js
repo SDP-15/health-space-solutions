@@ -13,39 +13,19 @@ function Footer() {
       <Container>
         <Row>
           <div className="icon-wrapper">
-            <NavLink
-              style={({ isActive }) => {
-                return isActive ? { color: 'grey' } : {};
-              }}
-              to="/"
-            >
-              <CompanyLogo
-                color={({ isActive }) => {
-                  return isActive ? 'grey' : 'white';
-                }}
-                size="inherit"
-              />
+            <NavLink to="/">
+              <CompanyLogo size="inherit" />
             </NavLink>
           </div>
 
           <div className="icon-wrapper">
-            <NavLink
-              style={({ isActive }) => {
-                return isActive ? { color: 'grey' } : {};
-              }}
-              to="/seat"
-            >
+            <NavLink to="/seat">
               <GiOfficeChair size="inherit" />
             </NavLink>
           </div>
 
           <div className="icon-wrapper">
-            <NavLink
-              style={({ isActive }) => {
-                return isActive ? { color: 'grey' } : {};
-              }}
-              to="/eye"
-            >
+            <NavLink to="/eye">
               <AiFillEye size="inherit" />
             </NavLink>
           </div>
