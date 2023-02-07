@@ -5,16 +5,29 @@ import { NavLink } from 'react-router-dom';
 import { Box, Container, Row } from './FooterStyles';
 import './Footer.css';
 
-// import CompanyLogo from '../../assets/CompanyLogo';
+import CompanyLogo from '../../assets/CompanyLogo';
 
 function Footer() {
   return (
     <Box>
       <Container>
         <Row>
-          {/* <FooterLink href="google.com">
-            <CompanyLogo size="50px" />
-          </FooterLink> */}
+          <div className="icon-wrapper">
+            <NavLink
+              style={({ isActive }) => {
+                return isActive ? { color: 'grey' } : {};
+              }}
+              to="/"
+            >
+              <CompanyLogo
+                color={({ isActive }) => {
+                  return isActive ? 'grey' : 'white';
+                }}
+                size="inherit"
+              />
+            </NavLink>
+          </div>
+
           <div className="icon-wrapper">
             <NavLink
               style={({ isActive }) => {
