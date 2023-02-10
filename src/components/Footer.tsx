@@ -14,7 +14,7 @@ function Footer() {
         <Row>
           <div className="icon-wrapper">
             <NavLink to="/">
-              <CompanyLogo size="inherit" />
+              <CompanyLogo />
             </NavLink>
           </div>
 
