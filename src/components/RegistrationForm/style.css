@@ -40,5 +40,19 @@
 }
 
 .btn {
+    background-color: pink;
     width: 100%;
+    border-radius: 2px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.btn:hover {
+    background-color: rgb(179, 135, 142);
+    transition: 200ms ease-in;
+}
+
+.has-error {
+    border-color: red;
 }

@@ -1,13 +1,16 @@
 import React = require('react');
 import { useState } from 'react';
 import './style.css';
+import { useNavigate } from 'react-router-dom';
 
 function RegistrationForm() {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordValid, setPasswordValid] = useState(true);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -22,14 +25,38 @@ function RegistrationForm() {
     }
     if (id === 'password') {
       setPassword(value);
+      setPasswordValid(value === confirmPassword);
     }
     if (id === 'confirmPassword') {
       setConfirmPassword(value);
+      setPasswordValid(password === value);
     }
   };
 
   const handleSubmit = () => {
-    console.log(firstName, lastName, email, password, confirmPassword);
+    if (passwordValid) {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+        }),
+      };
+      fetch('http://localhost:3000/register', requestOptions)
+        .then((response) => response.json())
+        .then((success) => {
+          if (success) {
+            navigate('/home');
+          } else {
+            console.error('failed');
+          }
+          return null;
+        })
+        .catch((err) => console.warn(err));
+    }
   };
 
   return (
@@ -96,7 +123,7 @@ function RegistrationForm() {
             Confirm Password{' '}
           </label>
           <input
-            className="form__input"
+            className={`form__input ${passwordValid ? '' : 'has-error'}`}
             type="password"
             id="confirmPassword"
             value={confirmPassword}
@@ -106,7 +133,11 @@ function RegistrationForm() {
         </div>
       </div>
       <div className="footer">
-        <button onClick={() => handleSubmit()} type="submit" className="btn">
+        <button
+          onClick={() => handleSubmit()}
+          type="submit"
+          className={`btn ${passwordValid ? '' : 'has-error'}`}
+        >
           Register
         </button>
       </div>

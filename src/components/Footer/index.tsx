@@ -12,7 +12,7 @@ function Footer() {
       <Container>
         <Row>
           <div className="icon-wrapper">
-            <NavLink to="/">
+            <NavLink to="/home">
               <CompanyLogo />
             </NavLink>
           </div>

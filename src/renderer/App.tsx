@@ -4,7 +4,7 @@ import RegistrationForm from 'components/RegistrationForm';
 import Footer from '../components/Footer';
 
 function Home() {
-  fetch('http://172.20.127.151:3000/users')
+  fetch('http://localhost:3000/users')
     .then((response) => response.json())
     .then((users) => console.warn(users))
     .catch(() => console.warn('failed'));
