@@ -1,11 +1,10 @@
-import React from 'react';
 import { GiOfficeChair } from 'react-icons/gi';
 import { AiFillEye } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 import { Box, Container, Row } from './FooterStyles';
-import './Footer.css';
+import './style.css';
 
-import CompanyLogo from '../../assets/CompanyLogo';
+import CompanyLogo from '../../../assets/CompanyLogo';
 
 function Footer() {
   return (
@@ -13,8 +12,8 @@ function Footer() {
       <Container>
         <Row>
           <div className="icon-wrapper">
-            <NavLink to="/">
-              <CompanyLogo size="inherit" />
+            <NavLink to="/home">
+              <CompanyLogo />
             </NavLink>
           </div>
 

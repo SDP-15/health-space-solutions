@@ -1,0 +1,58 @@
+.form{
+    background-color: white;
+    border-radius: 5px;
+    width: 550px;
+    margin: 20px auto;
+    padding: 20px;
+    /* height: 600px; */
+}
+
+.form-body{
+    text-align: left;
+    padding: 20px 10px;
+}
+
+.form-body > *{
+    padding: 5px;
+}
+
+.form__label{
+    width: 40%;
+    display:block;
+    color:black;
+}
+
+.form_input{
+    width: 60%;
+    display:block;
+    color:black;
+}
+
+.footer{
+    text-align: center;
+}
+
+.header{
+    background-color: gray;
+    padding: 5px;
+    border-radius: 2px;
+    border: white;
+}
+
+.btn {
+    background-color: pink;
+    width: 100%;
+    border-radius: 2px;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.btn:hover {
+    background-color: rgb(179, 135, 142);
+    transition: 200ms ease-in;
+}
+
+.has-error {
+    border-color: red;
+}

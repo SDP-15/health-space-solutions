@@ -1,13 +1,10 @@
 import { React } from 'react';
-import PropTypes from 'prop-types';
 
-function CompanyLogo({ size }) {
+function CompanyLogo() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      width={size}
-      height={size}
       stroke="black"
       fill="currentColor"
     >
@@ -16,13 +13,5 @@ function CompanyLogo({ size }) {
     </svg>
   );
 }
-
-CompanyLogo.propTypes = {
-  size: PropTypes.number,
-};
-
-CompanyLogo.defaultProps = {
-  size: 50,
-};
 
 export default CompanyLogo;
