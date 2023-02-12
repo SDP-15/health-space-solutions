@@ -1,15 +1,10 @@
-import { Canvas } from '@react-three/fiber';
-import { useGLTF, Stage, PresentationControls } from '@react-three/drei';
+import { Canvas, useLoader } from '@react-three/fiber';
+import { Stage, PresentationControls } from '@react-three/drei';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 function Model() {
-  const gltf = useGLTF('/office_chair.glb');
-  return (
-    <primitive
-      object={gltf.scene}
-      scale={0.01}
-      style={{ width: '300px', height: '300px' }}
-    />
-  );
+  const { scene } = useLoader(GLTFLoader, 'office_chair.glb');
+  return <primitive object={scene} scale={0.01} />;
 }
 
 export default function Chair() {
