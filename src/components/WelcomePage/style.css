@@ -16,6 +16,14 @@
     pointer-events: none;
 }
 
+.WelcomePage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
 .button-class {
     background-color: rgb(137, 127, 127);
     color:rgb(7, 4, 1);
