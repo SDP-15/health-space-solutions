@@ -1,11 +1,10 @@
 import './App.css';
-import { LogBox } from 'react-native/types';
-import LoginForm from 'components/Login';
+import Chair from 'components/Chair';
 
 export default function App() {
   return (
-    <div id="login">
-      <LoginForm />
+    <div id="chair">
+      <Chair />
     </div>
   );
 }

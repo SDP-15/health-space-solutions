@@ -111,9 +111,11 @@
   "dependencies": {
     "@react-three/drei": "^9.56.20",
     "@react-three/fiber": "^8.11.0",
+    "cors": "^2.8.5",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^5.2.3",
+    "mysql": "^2.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0"
