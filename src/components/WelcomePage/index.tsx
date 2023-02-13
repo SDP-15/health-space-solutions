@@ -4,16 +4,16 @@ import './style.css';
 
 export default function Welcome() {
   return (
-    <div>
+    <div className='WelcomePage'>
       <div className="Hello">
         <img width="200" src={icon} className="welcomeLogo" alt="icon" />
       </div>
       <div className="Hello">
-        <NavLink to="/login">
-          <button type="button">Sign In</button>
+        <NavLink to="/home">
+          <button className="button-class" type="button">Sign In</button>
         </NavLink>
         <NavLink to="/register">
-          <button type="button">Register</button>
+          <button className="button-class" type="button">Register</button>
         </NavLink>
       </div>
     </div>

@@ -10,8 +10,15 @@ body {
   );
   font-family: sans-serif;
   overflow-y: hidden;
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   margin: 0;
+}
+
+#root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }

@@ -3,8 +3,8 @@
     width:auto;
     pointer-events: none;
     animation-name: fadeIn;
-    animation-duration: 10s;
-    animation-iteration-count: 2;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
 }
 @keyframes fadeIn {
     0%{opacity: 0;}
@@ -15,12 +15,8 @@
     width:auto;
     pointer-events: none;
 }
-body {
-    background: #1b1919;
-    display: flex;
-}
 
-button {
+.button-class {
     background-color: rgb(137, 127, 127);
     color:rgb(7, 4, 1);
     padding: 10px 20px;
@@ -36,7 +32,7 @@ button {
     margin: 10px;
 }
 
-button:hover {
+.button-class:hover {
     transform: scale(1.05);
     opacity: 1;
 }
