@@ -5,11 +5,6 @@ import Welcome from 'components/WelcomePage';
 import Footer from '../components/Footer';
 
 function Home() {
-  fetch('http://localhost:3000/users')
-    .then((response) => response.json())
-    .then((users) => console.warn(users))
-    .catch(() => console.warn('failed'));
-
   return (
     <div>
       <div> Home </div>
