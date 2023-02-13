@@ -1,7 +1,8 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import RegistrationForm from 'components/RegistrationForm';
-import Footer from '../components/Footer';
+import SettingsPage from 'components/SettingsPage';
+import Footer from 'components/Footer';
 
 function Home() {
   fetch('http://localhost:3000/users')
@@ -40,6 +41,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<RegistrationForm />} />
+        <Route path="/settings" element={<SettingsPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/seat" element={<Seat />} />
         <Route path="/eye" element={<Eye />} />
