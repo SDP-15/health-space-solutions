@@ -2,6 +2,7 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import RegistrationForm from 'components/RegistrationForm';
 import Footer from '../components/Footer';
+import Seat from '../components/Seat';
 
 function Home() {
   fetch('http://localhost:3000/users')
@@ -17,10 +18,12 @@ function Home() {
   );
 }
 
-function Seat() {
+function SeatDiv() {
   return (
     <div>
-      <div> Seat </div>
+      <div>
+        <Seat />
+      </div>
       <Footer />
     </div>
   );
@@ -39,9 +42,9 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<RegistrationForm />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/seat" element={<Seat />} />
+        <Route path="/home" element={<RegistrationForm />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/seat" element={<SeatDiv />} />
         <Route path="/eye" element={<Eye />} />
       </Routes>
     </Router>
