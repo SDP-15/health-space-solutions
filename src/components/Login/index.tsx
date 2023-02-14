@@ -1,7 +1,9 @@
 import { ChangeEvent, useState } from 'react';
 import './style.css';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function LoginForm() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordValid] = useState(true);
@@ -27,7 +29,7 @@ function LoginForm() {
     };
 
     if (email.length === 0 || password.length === 0) {
-      alert('Fill in all the fields!');
+      alert(`Fill in all the fields!`);
       return;
     }
 
@@ -35,7 +37,7 @@ function LoginForm() {
       .then((response) => response.json())
       .then((success) => {
         if (success) {
-          alert('Successfully logged in!');
+          navigate('/home');
           setEmail('');
           setPassword('');
         } else {
@@ -89,6 +91,11 @@ function LoginForm() {
         >
           Login
         </button>
+      </div>
+      <div className="no-account">
+        <NavLink to="/register" className="no-account-link">
+          Don`t have an account?
+        </NavLink>
       </div>
     </div>
   );

@@ -56,3 +56,7 @@
 .has-error {
   border-color: red;
 }
+
+.no-account-link {
+  color: gray;
+}
