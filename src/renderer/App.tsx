@@ -3,6 +3,7 @@ import './App.css';
 import RegistrationForm from 'components/RegistrationForm';
 import Welcome from 'components/WelcomePage';
 import LoginForm from 'components/Login';
+import Graph from 'components/Graph';
 import Footer from '../components/Footer';
 import Seat from '../components/Seat';
 
@@ -28,7 +29,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Welcome />} />
+        <Route path="/" element={<Graph />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/home" element={<Home />} />
