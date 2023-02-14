@@ -37,8 +37,6 @@ function Seat() {
     for (let i = 0; i < serverData.length; i += 1) {
       const padNumber = serverData[i].sensor_id;
       const pressureData = serverData[i].data;
-      console.log(padNumber);
-      console.log(pressureData);
       let isPressed: boolean;
       if (pressureData !== 0) {
         isPressed = true;
