@@ -1,5 +1,6 @@
 import { GiOfficeChair } from 'react-icons/gi';
 import { AiFillEye } from 'react-icons/ai';
+import { FiSettings } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import { Box, Container, Row } from './FooterStyles';
 import './style.css';
@@ -11,21 +12,27 @@ function Footer() {
     <Box>
       <Container>
         <Row>
-          <div className="icon-wrapper">
+          <div className="icon-wrapper left">
             <NavLink to="/home">
               <CompanyLogo />
             </NavLink>
           </div>
 
-          <div className="icon-wrapper">
+          <div className="icon-wrapper left">
             <NavLink to="/seat">
               <GiOfficeChair size="inherit" />
             </NavLink>
           </div>
 
-          <div className="icon-wrapper">
+          <div className="icon-wrapper left">
             <NavLink to="/eye">
               <AiFillEye size="inherit" />
+            </NavLink>
+          </div>
+
+          <div className="icon-wrapper right">
+            <NavLink to="/settings">
+              <FiSettings size="inherit" />
             </NavLink>
           </div>
         </Row>
