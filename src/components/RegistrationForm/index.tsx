@@ -43,7 +43,11 @@ function RegistrationForm() {
       password.length === 0 ||
       confirmPassword.length === 0
     ) {
-      alert('Please fill in all the fields!');
+      alert('Please fill in all the fields.');
+      return;
+    }
+    if (password.length < 8) {
+      alert('Use 8 or more characters for your password.');
       return;
     }
     if (!passwordValid) {
