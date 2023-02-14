@@ -2,6 +2,7 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import RegistrationForm from 'components/RegistrationForm';
 import Footer from '../components/Footer';
+import Seat from '../components/Seat';
 
 function Home() {
   fetch('http://localhost:3000/users')
@@ -12,15 +13,6 @@ function Home() {
   return (
     <div>
       <div> Home </div>
-      <Footer />
-    </div>
-  );
-}
-
-function Seat() {
-  return (
-    <div>
-      <div> Seat </div>
       <Footer />
     </div>
   );
