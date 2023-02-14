@@ -54,6 +54,25 @@ app.get('/users', (req, res) => {
   });
 });
 
+app.post('/login', jsonParser, (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on POST /login with payload: ');
+  console.log(req.body);
+
+  connection.getConnection((err, conn) => {
+    let success = false;
+    conn.query(
+      `SELECT * FROM \`user\` WHERE eMail = ? AND password = ?`,
+      [req.body.email, req.body.password],
+      (error, results) => {
+        if (error) throw error;
+        success = results.length > 0;
+        res.send(success);
+      }
+    );
+  });
+});
+
 app.post('/register', jsonParser, (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   console.log('Request received on POST /register with payload: ');
