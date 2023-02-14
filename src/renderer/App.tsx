@@ -31,8 +31,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={<RegistrationForm />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<RegistrationForm />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/seat" element={<Seat />} />
         <Route path="/eye" element={<Eye />} />
       </Routes>
