@@ -24,13 +24,16 @@ app.get('/pressure_sensor_data', (req, res) => {
   // Connecting to the database.
   connection.getConnection((err, conn) => {
     // Executing the MySQL query (select all data from the 'pressure_sensor_data' table).
-    conn.query('SELECT * FROM pressure_sensor_data', (error, results) => {
-      // If some error occurs, we throw an error.
-      if (error) throw error;
-      // Getting the 'response' from the database and sending it to our route. This is were the data is.
-      res.send(results);
-      console.log('results: ', results);
-    });
+    conn.query(
+      'SELECT * FROM pressure_sensor_data ORDER BY time DESC LIMIT 3',
+      (error, results) => {
+        // If some error occurs, we throw an error.
+        if (error) throw error;
+        // Getting the 'response' from the database and sending it to our route. This is were the data is.
+        res.send(results);
+        console.log('results: ', results);
+      }
+    );
   });
 });
 
