@@ -1,8 +1,12 @@
-.body {
+.eye-tracking-page {
   background-color: white;
   color: black;
   text-align: left;
   padding: 100px 50px 50px 100px;
   overflow-y: auto;
   max-height: calc(100vh - 200px);
+}
+
+.eye-tracking-page a {
+  color: blue;
 }

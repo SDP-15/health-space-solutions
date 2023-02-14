@@ -4,40 +4,51 @@ import './style.css';
 function EyeTrackingPage() {
   return (
     <div>
-      <div className="body">
-        <div>
-          <h1>
-            <b>EyeAssist</b>
-          </h1>
-          <h4>
-            <b>The effect of digital screens on eyes</b>
-          </h4>
-          <p>
-            Digital eye strain is a group of eye and vision problems caused by
-            prolonged use of digital devices such as computers, tablets, or
-            mobile phone use. Its symptoms include dry, uncomfortable, strained
-            eyes as well as headaches blurred vision and even neck and shoulder
-            pain [1]. A study conducted by lenstore in 2021 [2] revealed that on
-            average, people spend 9 hours and 45 minutes looking at digital
-            screens worldwide. The same study aimed to investigate the claim
-            that prolonged time spent on digital devices damages eye health and
-            found that 77% of UK adults say that their eyes feel strained after
-            a long day at work staring at a digital screen. Another study
-            conducted by Ophthalmic & Physiological Optics [3] questioned office
-            workers in New York City and found that visual symptoms associated
-            with computer use occur very frequently and are strongly associated
-            with ocular surface disease, with the most prevalent symptom being
-            tired eyes reported by 40% of office workers.
-          </p>
-          <p>
-            EyeAssist is another group of functionalities that the health space
-            solutions desktop app would provide alongside PosturePal. It exists
-            to collect and analyse information about the user’s eye activity
-            upon using a desktop computer through use of an inbuilt camera or
-            webcam and use this data to help prevent digital eye strain and
-            other eye related problems.
-          </p>
-        </div>
+      <div className="eye-tracking-page">
+        <h1>
+          <b>EyeAssist</b>
+        </h1>
+        <h4>
+          <b>The effect of digital screens on eyes</b>
+        </h4>
+        <p>
+          Digital eye strain is a group of eye and vision problems caused by
+          prolonged use of digital devices such as computers, tablets, or mobile
+          phone use. Its symptoms include dry, uncomfortable, strained eyes as
+          well as headaches blurred vision and even neck and shoulder pain{' '}
+          <sup>
+            <a href="https://www.aoa.org/healthy-eyes/eye-and-vision-conditions/computer-vision-syndrome?sso=y">
+              [1]
+            </a>
+          </sup>
+          . A study conducted by lenstore in 2021{' '}
+          <sup>
+            <a href="https://www.lenstore.co.uk/research/devices-that-impact-eye-health/">
+              [2]
+            </a>
+          </sup>{' '}
+          revealed that on average, people spend 9 hours and 45 minutes looking
+          at digital screens worldwide. The same study aimed to investigate the
+          claim that prolonged time spent on digital devices damages eye health
+          and found that 77% of UK adults say that their eyes feel strained
+          after a long day at work staring at a digital screen. Another study
+          conducted by Ophthalmic and Physiological Optics{' '}
+          <sup>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/22775070/">[3]</a>
+          </sup>{' '}
+          questioned office workers in New York City and found that visual
+          symptoms associated with computer use occur very frequently and are
+          strongly associated with ocular surface disease, with the most
+          prevalent symptom being tired eyes reported by 40% of office workers.
+        </p>
+        <p>
+          EyeAssist is another group of functionalities that the health space
+          solutions desktop app would provide alongside PosturePal. It exists to
+          collect and analyse information about the user’s eye activity upon
+          using a desktop computer through use of an inbuilt camera or webcam
+          and use this data to help prevent digital eye strain and other eye
+          related problems.
+        </p>
         <h2>
           <b> Functionalities EyeAssist aims to provide</b>
         </h2>
@@ -53,7 +64,13 @@ function EyeTrackingPage() {
         <p>
           A study published by the Nepalese Journal of Ophthalmology found that
           taking frequent breaks from looking at a computer screen as suggested
-          above can significantly lessen eye strain symptoms [4].
+          above can significantly lessen eye strain symptoms{' '}
+          <sup>
+            <a href="https://www.nepjol.info/index.php/NEPJOPH/article/view/8707">
+              [4]
+            </a>
+          </sup>
+          .
         </p>
         <p>
           {' '}
@@ -76,18 +93,20 @@ function EyeTrackingPage() {
           looking at the screen for that period of time.
         </p>
         <p>
-          GazeCloud API: Through use of the GazeCloud API [5] to track the users
-          eyes, we can determine whether or not the user is looking at their
-          computer screen. GazeCloud API outputs a series of X and Y coordinates
-          gathered every few milliseconds in a csv file that corresponds to the
-          user’s viewport (size of their screen) with the origin (0,0) being at
-          the centre of their screen. The user can input the size of their
-          computer screen and relevant calculations can be performed to
-          determine whether the user is looking at the screen or away from the
-          screen every few milliseconds by checking whether the X and Y
-          coordinates output exceed the bounds of the input screen size.
+          GazeCloud API: Through use of the GazeCloud API{' '}
+          <sup>
+            <a href="https://gazerecorder.com/gazecloudapi/">[5]</a>
+          </sup>{' '}
+          to track the users eyes, we can determine whether or not the user is
+          looking at their computer screen. GazeCloud API outputs a series of X
+          and Y coordinates gathered every few milliseconds in a csv file that
+          corresponds to the user’s viewport (size of their screen) with the
+          origin (0,0) being at the centre of their screen. The user can input
+          the size of their computer screen and relevant calculations can be
+          performed to determine whether the user is looking at the screen or
+          away from the screen every few milliseconds by checking whether the X
+          and Y coordinates output exceed the bounds of the input screen size.
         </p>
-        <div />
         <div>
           <h4>
             <b>Blink Monitoring:</b>
@@ -97,30 +116,50 @@ function EyeTrackingPage() {
             A person on average will blink 18 times a minute. However, during
             computer/ other digital screen use, it is reported by a study from
             Bausch + Lomb that the average blink rate decreases by 66% as well a
-            higher rate of incomplete blinks which are less functional [11].
+            higher rate of incomplete blinks which are less functional{' '}
+            <sup>
+              <a href="https://bausch.co.uk/news/blink-rate">[6]</a>
+            </sup>
+            .
           </p>
           <p>
             Blinking is essential for eye health as it helps clean debris from
             your eyes, as well as wetting your eyes preventing dry eyes and
-            reducing risk of problems with your tear film [12]. However, by not
-            blinking enough your eyes can dry out leading to eye pain and blurry
-            vision as well as an increased risk of eye infection due to debris
-            that stay in your eye.
+            reducing risk of problems with your tear film{' '}
+            <sup>
+              <a href="https://www.healthline.com/health/how-many-times-do-you-blink-a-day#bottom-line">
+                [7]
+              </a>
+            </sup>
+            . However, by not blinking enough your eyes can dry out leading to
+            eye pain and blurry vision as well as an increased risk of eye
+            infection due to debris that stay in your eye.
           </p>
           <p>
             After every hour of using the computer, information about how many
             times the user blinks within that period of time will be collected.
             If the number of blinks within that period is below the average
-            (15-20 blinks a minute are the average [12], 15 blinks*60 minutes =
-            900 blinks within an hour is lower range) then a notification will
-            pop up reminding the user to try to blink more.
+            (15-20 blinks a minute are the average{' '}
+            <sup>
+              <a href="https://www.healthline.com/health/how-many-times-do-you-blink-a-day#bottom-line">
+                [7]
+              </a>
+            </sup>
+            , 15 blinks*60 minutes = 900 blinks within an hour is lower range)
+            then a notification will pop up reminding the user to try to blink
+            more.
           </p>
           <p>
             PyGaze: PyGaze API provides relevant functions:
-            wait_for_blink_start(), wait_for_blink_end() [10] which return the
-            timestamp of the start and end of a blink and can be used to log
-            information and count how many times the user has blinked during
-            their time using the computer.
+            wait_for_blink_start(), wait_for_blink_end(){' '}
+            <sup>
+              <a href="http://www.pygaze.org/documentation/eyetracker/#EyeTracker.wait_for_blink_start">
+                [8]
+              </a>
+            </sup>{' '}
+            which return the timestamp of the start and end of a blink and can
+            be used to log information and count how many times the user has
+            blinked during their time using the computer.
           </p>
         </div>
         <div>
@@ -141,37 +180,6 @@ function EyeTrackingPage() {
             20-20-20 rule which involves 20 minutes of screen time and 20
             seconds spent looking away from the screen remains the default and
             recommended setting.
-          </p>
-        </div>
-        <div>
-          <h4>
-            <b>References</b>
-          </h4>
-          <p>
-            American Optometric Association describing computer vision
-            syndrome/digital eye strain [1] -
-            https://www.aoa.org/healthy-eyes/eye-and-vision-conditions/computer-vision-syndrome?sso=y
-            Study conducted by lenstore on worldwide use of digital devices and
-            how it can impact eye health [2] -
-            https://www.lenstore.co.uk/research/devices-that-impact-eye-health/
-            Study conducted by Ophthalmic & Physiological Optics on the
-            correlation of ocular surface disease symptoms in office workers
-            based in New York [3] - https://pubmed.ncbi.nlm.nih.gov/22775070/
-            Study published by the Nepalese Journal of Ophthalmology regarding
-            computer vision syndrome in university students [4] -
-            https://www.nepjol.info/index.php/NEPJOPH/article/view/8707
-            GazeCloudAPI official website [5] -
-            https://gazerecorder.com/gazecloudapi/ A medium article on how to
-            integrate the gaze cloud API with a web application [6] -
-            https://medium.com/@williamwang15/integrating-gazecloudapi-a-high-accuracy-webcam-based-eye-tracking-solution-into-your-own-web-app-2d8513bb9865
-            A demonstration hosted on GitHub of the above [7] -
-            https://github.com/ruw001/GazeCloudAPIEyeTrackingDemo Another
-            demonstration similar to the above but integrated with the React app
-            instead [8] - https://github.com/bahorn/astonhack2019 [9] -
-            https://mmla.gse.harvard.edu/tools/gazecloud/ [10] -
-            http://www.pygaze.org/documentation/eyetracker/#EyeTracker.wait_for_blink_start
-            [11] - https://bausch.co.uk/news/blink-rate [12] -
-            https://www.healthline.com/health/how-many-times-do-you-blink-a-day#bottom-line
           </p>
         </div>
       </div>
