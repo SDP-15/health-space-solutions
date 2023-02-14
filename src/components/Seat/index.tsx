@@ -34,6 +34,13 @@ function Seat() {
   }
 
   function handlePressurePads() {
+    const NOTIFICATION_TITLE = 'Warning';
+    const NOTIFICATION_BODY = 'Poor Posture';
+
+    const customNotification = new Notification(NOTIFICATION_TITLE, {
+      body: NOTIFICATION_BODY,
+    });
+
     for (let i = 0; i < serverData.length; i += 1) {
       const padNumber = serverData[i].sensor_id;
       const pressureData = serverData[i].data;
