@@ -11,6 +11,7 @@ function RegistrationForm() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordValid, setPasswordValid] = useState(true);
+  const [emailValid, setEmailValid] = useState(true);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -22,6 +23,7 @@ function RegistrationForm() {
     }
     if (id === 'email') {
       setEmail(value);
+      setEmailValid();
     }
     if (id === 'password') {
       setPassword(value);
@@ -34,7 +36,17 @@ function RegistrationForm() {
   };
 
   const handleSubmit = () => {
-    if (passwordValid) {
+    if (
+      email.length === 0 ||
+      firstName.length === 0 ||
+      lastName.length === 0 ||
+      password.length === 0 ||
+      confirmPassword.length === 0
+    ) {
+      alert('Please fill in all the fields!');
+      return;
+    }
+    if (passwordValid && emailValid) {
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
