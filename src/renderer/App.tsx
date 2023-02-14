@@ -29,7 +29,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Graph />} />
+        <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/home" element={<Home />} />
