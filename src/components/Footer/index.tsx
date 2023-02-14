@@ -12,25 +12,25 @@ function Footer() {
     <Box>
       <Container>
         <Row>
-          <div className="icon-wrapper">
+          <div className="icon-wrapper left">
             <NavLink to="/home">
               <CompanyLogo />
             </NavLink>
           </div>
 
-          <div className="icon-wrapper">
+          <div className="icon-wrapper left">
             <NavLink to="/seat">
               <GiOfficeChair size="inherit" />
             </NavLink>
           </div>
 
-          <div className="icon-wrapper">
+          <div className="icon-wrapper left">
             <NavLink to="/eye">
               <AiFillEye size="inherit" />
             </NavLink>
           </div>
 
-          <div className="icon-wrapper">
+          <div className="icon-wrapper right">
             <NavLink to="/settings">
               <FiSettings size="inherit" />
             </NavLink>

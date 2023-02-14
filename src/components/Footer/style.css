@@ -14,7 +14,12 @@ a:hover {
   padding: 5px;
   border-color: white;
   border-style: solid;
+}
+.left {
   float: left;
+}
+.right {
+  float: right;
 }
 
 .active {
