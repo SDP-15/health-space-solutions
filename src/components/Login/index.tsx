@@ -42,8 +42,6 @@ function LoginForm() {
           setPassword('');
         } else {
           alert('Wrong email or password!');
-          setEmail('');
-          setPassword('');
         }
         return null;
       })
@@ -92,7 +90,7 @@ function LoginForm() {
           Login
         </button>
       </div>
-      <div className="no-account">
+      <div>
         <NavLink to="/register" className="no-account-link">
           Don`t have an account?
         </NavLink>
