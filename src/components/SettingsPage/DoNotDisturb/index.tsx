@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 
 class DoNotDisturbForm extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class DoNotDisturbForm extends React.Component {
             <option value="untilOff">Until Turned Off</option>
           </select>
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Apply Changes" className="button-class" />
       </form>
     );
   }

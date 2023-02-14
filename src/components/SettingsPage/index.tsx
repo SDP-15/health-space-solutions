@@ -5,11 +5,15 @@ import './style.css';
 
 export default function SettingsPage() {
   return (
-    <>
+    <div className="Settings">
       <h1>Settings</h1>
-      <DoNotDisturbForm />
-      <NotificationForm />
+      <div className="Form">
+        <DoNotDisturbForm />
+      </div>
+      <div className="Form">
+        <NotificationForm />
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
