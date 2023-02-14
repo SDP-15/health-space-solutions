@@ -38,8 +38,6 @@ function LoginForm() {
       .then((success) => {
         if (success) {
           navigate('/home');
-          setEmail('');
-          setPassword('');
         } else {
           alert('Wrong email or password!');
         }
