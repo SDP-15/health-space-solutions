@@ -9,7 +9,7 @@ export default function Welcome() {
         <img width="200" src={icon} className="welcomeLogo" alt="icon" />
       </div>
       <div className="Hello">
-        <NavLink to="/home">
+        <NavLink to="/login">
           <button className="button-class" type="button">
             Sign In
           </button>
