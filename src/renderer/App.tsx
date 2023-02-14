@@ -18,17 +18,6 @@ function Home() {
   );
 }
 
-function SeatDiv() {
-  return (
-    <div>
-      <div>
-        <Seat />
-      </div>
-      <Footer />
-    </div>
-  );
-}
-
 function Eye() {
   return (
     <div>
@@ -44,7 +33,7 @@ export default function App() {
       <Routes>
         <Route path="/home" element={<RegistrationForm />} />
         <Route path="/" element={<Home />} />
-        <Route path="/seat" element={<SeatDiv />} />
+        <Route path="/seat" element={<Seat />} />
         <Route path="/eye" element={<Eye />} />
       </Routes>
     </Router>
