@@ -1,7 +1,6 @@
-import React = require('react');
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import './style.css';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function RegistrationForm() {
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ function RegistrationForm() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordValid, setPasswordValid] = useState(true);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     if (id === 'firstName') {
       setFirstName(value);
@@ -140,6 +139,11 @@ function RegistrationForm() {
         >
           Register
         </button>
+      </div>
+      <div>
+        <NavLink to="/login" className="has-account-link">
+          Already have an account?
+        </NavLink>
       </div>
     </div>
   );
