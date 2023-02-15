@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import Graph from 'components/Graph';
+import Footer from 'components/Footer';
 import ChairPic from '../../../assets/officechair.png';
-import Footer from '../Footer';
+
 import './style.css';
 
 function Seat() {
@@ -18,6 +20,13 @@ function Seat() {
   }
 
   useEffect(() => {
+    const NOTIFICATION_TITLE = 'Warning';
+    const NOTIFICATION_BODY = 'Poor Posture';
+
+    const customNotification = new Notification(NOTIFICATION_TITLE, {
+      body: NOTIFICATION_BODY,
+    });
+
     for (let i = 0; i < pressureSensorReadings.length; i += 1) {
       const padNumber = pressureSensorReadings[i].sensor_id;
       const pressureData = pressureSensorReadings[i].reading;
@@ -63,6 +72,9 @@ function Seat() {
         <button type="button" id="submitButton" onClick={handlePressurePads}>
           Submit
         </button>
+      </div>
+      <div className="graph">
+        <Graph />
       </div>
       <Footer />
     </div>

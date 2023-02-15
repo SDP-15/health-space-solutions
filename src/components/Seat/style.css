@@ -12,6 +12,10 @@
   height: 30px;
   background-color: grey;
 }
+.graph {
+  position: relative;
+  float: right;
+}
 .square.active {
   background-color: darkred;
 }
@@ -50,5 +54,5 @@
 #submitButton {
   position: absolute;
   top: 110px;
-  right: 40px;
+  left: 300px;
 }
