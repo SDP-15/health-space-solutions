@@ -4,7 +4,7 @@ import Footer from '../Footer';
 import './style.css';
 
 function Seat() {
-  const [serverData, setData] = useState([]);
+  const [pressureSensorReadings, setData] = useState([]);
 
   function changePressurePadColour(squareNumber: number, isPressed: boolean) {
     const square = document.getElementById(`square${squareNumber.toString()}`);
@@ -28,9 +28,9 @@ function Seat() {
       console.error(error);
     }
 
-    for (let i = 0; i < serverData.length; i += 1) {
-      const padNumber = serverData[i].sensor_id;
-      const pressureData = serverData[i].data;
+    for (let i = 0; i < pressureSensorReadings.length; i += 1) {
+      const padNumber = pressureSensorReadings[i].sensor_id;
+      const pressureData = pressureSensorReadings[i].data;
       console.log(padNumber);
       console.log(pressureData);
       let isPressed: boolean;
