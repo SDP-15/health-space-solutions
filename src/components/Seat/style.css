@@ -1,13 +1,13 @@
 .container {
-  position: absolute;
+  position: fixed;
 }
 .chair {
   resize: none;
-  height: auto;
-  max-width: 70%;
+  width: 400px;
+  height: 500px;
 }
 .square {
-  position: absolute;
+  position: fixed;
   width: 30px;
   height: 30px;
   background-color: grey;
@@ -21,7 +21,7 @@
 }
 #square2 {
   top: 150px;
-  right: 355px;
+  left: 188px;
 }
 #square3 {
   top: 65px;
@@ -29,15 +29,15 @@
 }
 #square4 {
   top: 103px;
-  right: 355px;
+  left: 188px;
 }
 #square5 {
-  bottom: 243px;
-  right: 310px;
+  top: 233px;
+  left: 230px;
 }
 #square6 {
-  bottom: 200px;
-  right: 320px;
+  top: 190px;
+  left: 240px;
 }
 #square7 {
   top: 190px;
@@ -46,28 +46,6 @@
 #square8 {
   top: 233px;
   left: 145px;
-}
-.textbox {
-  position: absolute;
-}
-.checkbox {
-  position: absolute;
-}
-.checkboxLabel {
-  position: absolute;
-  right: 140px;
-}
-#label1 {
-  top: 20px;
-}
-#label2 {
-  top: 50px;
-}
-#label3 {
-  top: 80px;
-}
-#label4 {
-  top: 110px;
 }
 #submitButton {
   position: absolute;
