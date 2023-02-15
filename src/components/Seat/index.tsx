@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChairPic from '../../../assets/officechair.png';
 import Footer from '../Footer';
 import './style.css';
@@ -17,30 +17,30 @@ function Seat() {
     }
   }
 
-  async function handlePressurePads() {
-    try {
-      const response = await fetch(
-        'http://localhost:3000/pressure_sensor_data'
-      );
-      const jsonData = await response.json();
-      setData(jsonData);
-    } catch (error) {
-      console.error(error);
-    }
-
+  useEffect(() => {
     for (let i = 0; i < pressureSensorReadings.length; i += 1) {
       const padNumber = pressureSensorReadings[i].sensor_id;
       const pressureData = pressureSensorReadings[i].reading;
-      console.log(padNumber);
-      console.log(pressureData);
       let isPressed: boolean;
       if (pressureData < 100) {
         isPressed = false;
       } else {
         isPressed = true;
       }
-      console.log('pressureData', isPressed);
       changePressurePadColour(padNumber, isPressed);
+    }
+  });
+
+  async function handlePressurePads() {
+    try {
+      const response = await fetch(
+        'http://localhost:3000/pressure_sensor_data'
+      );
+
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (error) {
+      console.error(error);
     }
   }
 
