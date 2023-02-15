@@ -34,7 +34,7 @@ function Seat() {
       console.log(padNumber);
       console.log(pressureData);
       let isPressed: boolean;
-      if (pressureData === '0') {
+      if (pressureData < 100) {
         isPressed = false;
       } else {
         isPressed = true;
