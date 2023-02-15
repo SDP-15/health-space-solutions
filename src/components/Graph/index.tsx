@@ -18,7 +18,7 @@ function Graph() {
     <div>
       <h1>Todays Posture Scoring</h1>
       <LineChart
-        width={800}
+        width={620}
         height={400}
         data={data}
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
