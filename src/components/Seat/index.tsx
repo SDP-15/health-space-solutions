@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import Graph from 'components/Graph';
 import ChairPic from '../../../assets/chair.png';
 import Footer from '../Footer';
+
 import './style.css';
 
 function Seat() {
@@ -69,6 +71,9 @@ function Seat() {
         <button type="button" id="submitButton" onClick={handlePressurePads}>
           Submit
         </button>
+      </div>
+      <div className="graph">
+        <Graph />
       </div>
       <Footer />
     </div>

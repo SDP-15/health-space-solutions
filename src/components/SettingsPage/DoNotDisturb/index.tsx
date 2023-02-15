@@ -15,16 +15,18 @@ class DoNotDisturbForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert(`Currently Set To: ${this.state.value}`);
+    const { value } = this.state;
+    alert(`Currently Set To: ${value}`);
     event.preventDefault();
   }
 
   render() {
+    const { value } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
+        <label htmlFor="select">
           Do Not Disturb:
-          <select value={this.state.value} onChange={this.handleChange}>
+          <select id="select" value={value} onChange={this.handleChange}>
             <option value="off">Off</option>
             <option value="1hr">1 Hour</option>
             <option value="2hr">2 Hour</option>

@@ -15,16 +15,18 @@ class NotificationForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert(`Currently Set To: ${this.state.value}`);
+    const { value } = this.state;
+    alert(`Currently Set To: ${value}`);
     event.preventDefault();
   }
 
   render() {
+    const { value } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
+        <label htmlFor="select">
           Notify About Bad Posture After:
-          <select value={this.state.value} onChange={this.handleChange}>
+          <select id="select" value={value} onChange={this.handleChange}>
             <option value="5mins">5 minutes</option>
             <option value="10mins">10 minutes</option>
             <option value="20mins">20 minutes</option>
