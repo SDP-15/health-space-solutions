@@ -31,6 +31,7 @@ app.get('/pressure_sensor_data', (req, res) => {
       res.send(results);
       console.log('results: ', results);
     });
+    conn.end();
   });
 });
 
@@ -48,6 +49,7 @@ app.get('/users', (req, res) => {
       // Getting the 'response' from the database and sending it to our route. This is were the data is.
       res.send(results);
     });
+    conn.end();
   });
 });
 
@@ -67,6 +69,7 @@ app.post('/login', jsonParser, (req, res) => {
         res.send(success);
       }
     );
+    conn.end();
   });
 });
 
@@ -106,6 +109,7 @@ app.post('/register', jsonParser, (req, res) => {
         }
       }
     );
+    conn.end();
   });
 });
 
