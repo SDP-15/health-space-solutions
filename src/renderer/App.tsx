@@ -1,26 +1,17 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import RegistrationForm from 'components/RegistrationForm';
+import EyeTrackingPage from 'components/EyeTrackingPage';
 import SettingsPage from 'components/SettingsPage';
 import Welcome from 'components/WelcomePage';
 import LoginForm from 'components/Login';
-import Graph from 'components/Graph';
-import Footer from '../components/Footer';
-import Seat from '../components/Seat';
+import Footer from 'components/Footer';
+import Seat from 'components/Seat';
 
 function Home() {
   return (
     <div>
       <div> Home </div>
-      <Footer />
-    </div>
-  );
-}
-
-function Eye() {
-  return (
-    <div>
-      <div> EyeTracker </div>
       <Footer />
     </div>
   );
@@ -36,7 +27,7 @@ export default function App() {
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/seat" element={<Seat />} />
-        <Route path="/eye" element={<Eye />} />
+        <Route path="/eye" element={<EyeTrackingPage />} />
       </Routes>
     </Router>
   );
