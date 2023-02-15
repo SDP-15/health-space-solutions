@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ChairPic from '../../../assets/officechair.png';
 import Footer from '../Footer';
 import './style.css';
