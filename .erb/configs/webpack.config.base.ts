@@ -57,8 +57,8 @@ const configuration: webpack.Configuration = {
       // url: false,
       // assert: require.resolve('assert'),
       // os: require.resolve('os-browserify/browser'),
-      path: require.resolve('path-browserify'),
-      fs: false,
+      // path: require.resolve('path-browserify'),
+      // fs: false,
     },
   },
 
