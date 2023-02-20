@@ -2,14 +2,6 @@ import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
 export type Channels = 'ipc-example';
 
-// mainWindow.addEventListener('DOMContentLoaded', function () {
-//   const checkBox = document.getElementById('chkbox');
-//   checkBox.addEventListener('change', () => {
-//     const txt = 'HELLO WORLD!';
-//     ipcRenderer.send('saveText', txt);
-//   });
-// });
-
 const electronHandler = {
   ipcRenderer: {
     sendMessage(channel: Channels, args: unknown[]) {
