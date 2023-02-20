@@ -57,6 +57,7 @@
   border-color: red;
 }
 
-.no-account-link {
+.no-account-link,
+.remember-me {
   color: gray;
 }

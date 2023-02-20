@@ -2,15 +2,16 @@ const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const { connect } = require('http2');
 
 // create application/json parser
 const jsonParser = bodyParser.json();
 
 const connection = mysql.createPool({
-  host: 'sql8.freemysqlhosting.net', // Your connection adress (localhost).
-  user: 'sql8596986', // Your database's username.
-  password: 'zzRR3mNM8j', // Your database's password.
-  database: 'sql8596986', // Your database's name.
+  host: 'sql8.freesqldatabase.com', // Your connection adress (localhost).
+  user: 'sql8598740', // Your database's username.
+  password: '7xfqvw4w6m', // Your database's password.
+  database: 'sql8598740', // Your database's name.
 });
 
 // Starting our app.
@@ -34,6 +35,7 @@ app.get('/pressure_sensor_data', (req, res) => {
         console.log('results: ', results);
       }
     );
+    conn.release();
   });
 });
 
@@ -51,6 +53,7 @@ app.get('/users', (req, res) => {
       // Getting the 'response' from the database and sending it to our route. This is were the data is.
       res.send(results);
     });
+    conn.release();
   });
 });
 
@@ -70,6 +73,7 @@ app.post('/login', jsonParser, (req, res) => {
         res.send(success);
       }
     );
+    conn.release();
   });
 });
 
@@ -109,6 +113,7 @@ app.post('/register', jsonParser, (req, res) => {
         }
       }
     );
+    conn.release();
   });
 });
 

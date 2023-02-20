@@ -1,12 +1,14 @@
 import { ChangeEvent, useState } from 'react';
 import './style.css';
 import { NavLink, useNavigate } from 'react-router-dom';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LoginForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordValid] = useState(true);
+  const [rememberedCheck, setRememberedCheck] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -16,6 +18,26 @@ function LoginForm() {
     if (id === 'password') {
       setPassword(value);
     }
+  };
+
+  const rememberUser = async () => {
+    try {
+      await AsyncStorage.setItem('loggedIn', true.toString());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const forgetUser = async () => {
+    try {
+      await AsyncStorage.setItem('loggedIn', false.toString());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const rememberMeCheckBox = async (e: ChangeEvent<HTMLInputElement>) => {
+    setRememberedCheck(e.target.checked);
   };
 
   const handleSubmit = () => {
@@ -37,6 +59,11 @@ function LoginForm() {
       .then((response) => response.json())
       .then((success) => {
         if (success) {
+          if (rememberedCheck) {
+            rememberUser();
+          } else {
+            forgetUser();
+          }
           navigate('/home');
         } else {
           alert('Wrong email or password!');
@@ -88,7 +115,12 @@ function LoginForm() {
           Login
         </button>
       </div>
-      <div>
+      <div className="remember-me">
+        Remember me
+        <input type="checkbox" onChange={(e) => rememberMeCheckBox(e)} />
+      </div>
+
+      <div className="no-account">
         <NavLink to="/register" className="no-account-link">
           Don`t have an account?
         </NavLink>

@@ -50,12 +50,15 @@ const configuration: webpack.Configuration = {
     fallback: {
       // crypto: require.resolve('crypto-browserify'),
       // stream: require.resolve('stream-browserify'),
-      // timers: require.resolve('timers-browserify'),
+      // // timers: require.resolve('timers-browserify'),
       // util: require.resolve('util'),
       // net: false,
       // tls: false,
       // url: false,
-      // fs: false,
+      // assert: require.resolve('assert'),
+      // os: require.resolve('os-browserify/browser'),
+      path: require.resolve('path-browserify'),
+      fs: false,
     },
   },
 
