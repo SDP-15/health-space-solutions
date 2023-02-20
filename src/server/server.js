@@ -2,7 +2,6 @@ const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { connect } = require('http2');
 
 // create application/json parser
 const jsonParser = bodyParser.json();
