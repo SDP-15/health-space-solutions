@@ -1,20 +1,25 @@
 
 .form-register {
   overflow-y: scroll;
+  text-align: center;
+
 }
 
 .form-body {
-  text-align: center;
   padding: 20px 10px;
+  margin-left:100px;
+  margin-right:100px;
 }
 
 .form-body > * {
   padding: 10px;
+  ;
 }
 
 
 .form_input-reg {
-  width: 60%;
+  width: 100%;
+  text-align: center;
   color: white;
   padding: 20px 0px;
   background: transparent;
