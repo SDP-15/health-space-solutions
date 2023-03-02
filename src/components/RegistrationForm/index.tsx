@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import './style.css';
 import { NavLink, useNavigate } from 'react-router-dom';
+import icon from '../../../assets/healthspace4.png';
 
 function RegistrationForm() {
   const navigate = useNavigate();
@@ -59,17 +60,15 @@ function RegistrationForm() {
   };
 
   return (
-    <div className="form">
-      <div className="header row col-12 d-flex justify-content-center">
-        <h3>Registration</h3>
+    <div className="form-register">
+      <img src={icon} className="icon-reg" alt="icon" />
+      <div className="header-reg row col-12 d-flex justify-content-center">
+        Create An Account
       </div>
       <div className="form-body">
         <div className="username">
-          <label className="form__label" htmlFor="firstName">
-            First Name{' '}
-          </label>
           <input
-            className="form__input"
+            className="form_input-reg"
             type="text"
             value={firstName}
             onChange={(e) => handleInputChange(e)}
@@ -78,38 +77,29 @@ function RegistrationForm() {
           />
         </div>
         <div className="lastname">
-          <label className="form__label" htmlFor="lastName">
-            Last Name{' '}
-          </label>
           <input
             type="text"
             name=""
             id="lastName"
             value={lastName}
-            className="form__input"
+            className="form_input-reg"
             onChange={(e) => handleInputChange(e)}
-            placeholder="LastName"
+            placeholder="Last Name"
           />
         </div>
         <div className="email">
-          <label className="form__label" htmlFor="email">
-            Email{' '}
-          </label>
           <input
             type="email"
             id="email"
-            className="form__input"
+            className="form_input-reg"
             value={email}
             onChange={(e) => handleInputChange(e)}
             placeholder="Email"
           />
         </div>
         <div className="password">
-          <label className="form__label" htmlFor="password">
-            Password{' '}
-          </label>
           <input
-            className="form__input"
+            className="form_input-reg"
             type="password"
             id="password"
             value={password}
@@ -118,11 +108,8 @@ function RegistrationForm() {
           />
         </div>
         <div className="confirm-password">
-          <label className="form__label" htmlFor="confirmPassword">
-            Confirm Password{' '}
-          </label>
           <input
-            className={`form__input ${passwordValid ? '' : 'has-error'}`}
+            className={`form_input-reg ${passwordValid ? '' : 'has-error'}`}
             type="password"
             id="confirmPassword"
             value={confirmPassword}
@@ -135,12 +122,12 @@ function RegistrationForm() {
         <button
           onClick={() => handleSubmit()}
           type="submit"
-          className={`btn ${passwordValid ? '' : 'has-error'}`}
+          className={`btn-reg ${passwordValid ? '' : 'has-error'}`}
         >
           Register
         </button>
       </div>
-      <div>
+      <div className="exit-reg">
         <NavLink to="/login" className="has-account-link">
           Already have an account?
         </NavLink>
