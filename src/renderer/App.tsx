@@ -9,20 +9,11 @@ import Footer from 'components/Footer';
 import Seat from 'components/Seat';
 import HomePage from 'components/HomePage';
 
-function Home() {
-  return (
-    <div>
-      <div> Home </div>
-      <Footer />
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/settings" element={<SettingsPage />} />
