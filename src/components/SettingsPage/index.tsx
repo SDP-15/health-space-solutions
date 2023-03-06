@@ -1,7 +1,6 @@
 import Footer from 'components/Footer';
 import { useState, ChangeEvent } from 'react';
-import DoNotDisturbForm from './DoNotDisturb';
-import NotificationForm from './Notifications';
+
 import icon from '../../../assets/healthspace4.png';
 import './style.css';
 
@@ -37,9 +36,7 @@ export default function SettingsPage() {
       </div>
       <form onSubmit={handleSubmit} className="form-container">
         <div className="form-row">
-        <label htmlFor="disturb">
-          Do Not Disturb:
-          </label>
+          <label htmlFor="disturb">Do Not Disturb:</label>
           <select
             id="disturb"
             value={doNotDisturb}
@@ -51,12 +48,9 @@ export default function SettingsPage() {
             <option value="2hr">2 Hour</option>
             <option value="untilOff">Until Turned Off</option>
           </select>
-
         </div>
         <div className="form-row">
-        <label htmlFor="notification">
-          Notify About Bad Posture After:
-          </label>
+          <label htmlFor="notification">Notify About Bad Posture After:</label>
           <select
             id="notification"
             value={notifications}
