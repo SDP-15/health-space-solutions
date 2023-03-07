@@ -1,0 +1,44 @@
+.section{
+
+}
+
+.bar{
+  height: 15px;
+  border-radius: 10px;
+}
+
+.icons{
+  width:150px;
+
+}
+
+/* (A) WRAPPER */
+.hoverwrap {
+  position: relative; /* required for (c2) */
+  display: inline-block;
+}
+
+
+/* (C) CAPTION */
+.hovercap {
+  /* (C1) DIMENSIONS */
+
+  padding: 10px;
+  position: absolute;
+  bottom: 50px;
+  width:130px;
+  text-align: center;
+
+  /* (C3) COLORS */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+/* (D) SHOW/HIDE */
+.hovercap {
+  visibility: none; opacity: 0;
+  transition: opacity 0.3s;
+}
+.hoverwrap:hover .hovercap {
+  visibility: visible; opacity: 1;
+}
