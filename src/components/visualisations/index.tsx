@@ -5,7 +5,7 @@ import slouchingIcon from '../../../assets/slouchingIcon.png';
 import CanvasJSReact from './canvasjs.react';
 
 export default function Visualisations() {
-  const hunchingPer = 20;
+  const hunchingPer = 10;
   const slouchingPer = 30;
   const crossedPer = 60;
 
@@ -14,27 +14,27 @@ export default function Visualisations() {
   let barColorC: string;
 
   if (hunchingPer < 20) {
-    barColorH = 'green';
+    barColorH = 'lightgreen';
   } else if (hunchingPer >= 20 && hunchingPer < 50) {
     barColorH = 'orange';
   } else {
-    barColorH = 'red';
+    barColorH = '#DC143C';
   }
 
   if (slouchingPer < 20) {
-    barColorS = 'green';
+    barColorS = 'lightgreen';
   } else if (slouchingPer >= 20 && slouchingPer < 50) {
     barColorS = 'orange';
   } else {
-    barColorS = 'red';
+    barColorS = '#DC143C';
   }
 
   if (crossedPer < 20) {
-    barColorC = 'green';
+    barColorC = 'lightgreen';
   } else if (crossedPer >= 20 && crossedPer < 50) {
     barColorC = 'orange';
   } else {
-    barColorC = 'red';
+    barColorC = '#DC143C';
   }
 
   return (
@@ -47,7 +47,7 @@ export default function Visualisations() {
         <div
           className="bar"
           style={{
-            width: `${hunchingPer}px`,
+            width: `${hunchingPer * 1.5}px`,
             backgroundColor: barColorH,
           }}
         />
@@ -61,7 +61,7 @@ export default function Visualisations() {
         <div
           className="bar"
           style={{
-            width: `${slouchingPer}px`,
+            width: `${slouchingPer * 1.5}px`,
             backgroundColor: barColorS,
           }}
         />
@@ -74,7 +74,7 @@ export default function Visualisations() {
         <div
           className="bar"
           style={{
-            width: `${crossedPer}px`,
+            width: `${crossedPer * 1.5}px`,
             backgroundColor: barColorC,
           }}
         />
