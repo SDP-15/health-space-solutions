@@ -1,21 +1,24 @@
-import { PieChart, Pie, Legend } from 'recharts';
+import { PieChart, Pie, Legend, Label } from 'recharts';
 import './style.css';
 
 function piechart() {
   const data = [
-    { name: 'Good', time: 200, fill: '#556B2F' },
-    { name: 'Adequate', time: 250, fill: '#B8860B' },
-    { name: 'Poor', time: 100, fill: '#A52A2A' },
+    { name: 'Good', time: 200, fill: 'lightgreen' },
+    { name: 'Poor', time: 100, fill: 'red' },
   ];
 
+  const totalTime = '8h 0m';
   return (
-    <>
+    <div>
       <PieChart width={250} height={250}>
-        <Pie data={data} dataKey="time" innerRadius={60} outerRadius={80} />
-        <Legend verticalAlign="top" height={36} />
+        <Pie data={data} dataKey="time" innerRadius={60} outerRadius={80}>
+          <Label position="center" fontSize={14} fill="white">
+            Total Time:{totalTime}
+          </Label>
+        </Pie>
+        <Legend verticalAlign="bottom" height={36} iconType="circle" />
       </PieChart>
-      <p>Total Time: 8 hours</p>
-    </>
+    </div>
   );
 }
 
