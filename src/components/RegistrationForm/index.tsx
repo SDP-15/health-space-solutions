@@ -65,7 +65,7 @@ function RegistrationForm() {
       <div className="header-reg row col-12 d-flex justify-content-center">
         Create An Account
       </div>
-      <div className="form-body">
+      <div className="form-body-reg">
         <div className="username">
           <input
             className="form_input-reg"

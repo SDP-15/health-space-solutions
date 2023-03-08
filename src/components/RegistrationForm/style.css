@@ -5,23 +5,19 @@
 
 }
 
-.form-body {
+.form-body-reg {
   padding: 20px 10px;
-  margin-left:100px;
-  margin-right:100px;
+  margin-left:200px;
+  margin-right:200px;
 }
 
-.form-body > * {
-  padding: 10px;
-  ;
-}
 
 
 .form_input-reg {
   width: 100%;
   text-align: center;
   color: white;
-  padding: 20px 0px;
+  padding: 10px 0px;
   background: transparent;
   border: 0;
   border-bottom: 1px solid #575858;
@@ -35,7 +31,7 @@
 
 .header-reg {
   text-align: center;
-  font-family: Calibri;
+  font-family: Calibri, 'Gill Sans', 'Gill Sans MT',  'Trebuchet MS', sans-serif;
   font-weight: 50;
   font-size: 20pt;
   padding: 2.5px;
