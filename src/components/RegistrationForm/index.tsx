@@ -4,12 +4,14 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 function RegistrationForm() {
   const navigate = useNavigate();
+  const expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; // regex for email validation
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordValid, setPasswordValid] = useState(true);
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -21,6 +23,7 @@ function RegistrationForm() {
     }
     if (id === 'email') {
       setEmail(value);
+      setEmailValid(expression.test(value));
     }
     if (id === 'password') {
       setPassword(value);
@@ -33,7 +36,30 @@ function RegistrationForm() {
   };
 
   const handleSubmit = () => {
-    if (passwordValid) {
+    if (
+      email.length === 0 ||
+      firstName.length === 0 ||
+      lastName.length === 0 ||
+      password.length === 0 ||
+      confirmPassword.length === 0
+    ) {
+      alert('Please fill in all the fields.');
+      return;
+    }
+    if (password.length < 8) {
+      alert('Use 8 or more characters for your password.');
+      return;
+    }
+    if (!passwordValid) {
+      alert('Your passwords do not match.');
+      return;
+    }
+    if (!emailValid) {
+      alert('Please enter a valid email.');
+      return;
+    }
+
+    if (passwordValid && emailValid) {
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,6 +76,7 @@ function RegistrationForm() {
           if (success) {
             navigate('/home');
           } else {
+            alert('This email already exists.');
             console.error('failed');
           }
           return null;
