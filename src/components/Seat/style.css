@@ -8,10 +8,7 @@
   background-color: grey;
 }
 .graph {
-
   position: relative;
-  float:right;
-
 }
 .square.active {
   background-color: darkred;
