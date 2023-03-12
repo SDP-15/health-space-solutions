@@ -1,8 +1,19 @@
 import './style.css';
 import Footer from 'components/Footer';
+import { useNavigate } from 'react-router-dom';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import icon from '../../../assets/healthspace4.png';
 
 function Home() {
+  const navigate = useNavigate();
+  const forgetUser = async () => {
+    try {
+      await AsyncStorage.removeItem('loggedIn');
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="HomePage">
       <img src={icon} className="icon" alt="icon" />
@@ -28,6 +39,16 @@ function Home() {
           at work. Embrace good office health with HealthSpace Solutions.
         </p>
       </div>
+      <form id="logout_form">
+        <button
+          form="logout_form"
+          onClick={() => forgetUser()}
+          type="submit"
+          className="logout_button"
+        >
+          Log out
+        </button>
+      </form>
       <Footer />
     </div>
   );
