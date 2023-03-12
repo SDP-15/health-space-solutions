@@ -1,0 +1,21 @@
+.icon{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+.para{
+  margin: 25px;
+}
+.heading{
+  font-size: 10;
+  font-family: Helvetica;
+}
+
+.HomePage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
