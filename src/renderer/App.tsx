@@ -11,7 +11,6 @@ import HomePage from 'components/HomePage';
 
 export default function App() {
   return (
-    <div className="home_page">
       <Router>
         <Routes>
           <Route
@@ -31,6 +30,5 @@ export default function App() {
           <Route path="/eye" element={<EyeTrackingPage />} />
         </Routes>
       </Router>
-    </div>
   );
 }
