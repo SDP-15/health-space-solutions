@@ -168,7 +168,7 @@ function RegistrationForm() {
         </button>
       </div>
       <div>
-        <NavLink className="has-account-link" to="/login">
+        <NavLink to="/login" className="has-account-link">
           Already have an account?
         </NavLink>
       </div>
