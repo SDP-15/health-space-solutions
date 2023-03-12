@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const connection = mysql.createPool({
-  host: 'sql8.freesqldatabase.com', // Your connection adress (localhost).
-  user: 'sql8598740', // Your database's username.
-  password: '7xfqvw4w6m', // Your database's password.
-  database: 'sql8598740', // Your database's name.
+  host: 'sdp-15.cdi3alkln8jp.eu-west-2.rds.amazonaws.com', // Your connection adress (localhost).
+  user: 'admin', // Your database's username.
+  password: 'jiphEx-woffez-8qaqto', // Your database's password.
+  database: 'sdp-15', // Your database's name.
 });
 
 // Starting our app.
