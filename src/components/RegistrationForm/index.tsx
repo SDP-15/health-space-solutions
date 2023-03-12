@@ -11,8 +11,8 @@ function RegistrationForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordValid, setPasswordValid] = useState(true);
-  const [emailValid, setEmailValid] = useState(true);
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
