@@ -1,10 +1,17 @@
+import { useNavigate } from 'react-router-dom';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Footer from 'components/Footer';
-import { useState, ChangeEvent } from 'react';
+import { useState } from 'react';
 
 import icon from '../../../assets/healthspace4.png';
 import './style.css';
 
 export default function SettingsPage() {
+  const navigate = useNavigate();
+  const forgetUser = () => {
+    AsyncStorage.removeItem('loggedIn');
+    navigate('/');
+  };
   const [doNotDisturb, setDoNotDisturb] = useState('');
   const [notifications, setNotifications] = useState('');
 
@@ -65,6 +72,16 @@ export default function SettingsPage() {
         </div>
         <button type="submit" className="button-class">
           Apply Changes
+        </button>
+      </form>
+      <form id="logout_form">
+        <button
+          form="logout_form"
+          onClick={() => forgetUser()}
+          type="submit"
+          className="logout_button"
+        >
+          Log out
         </button>
       </form>
       <Footer />

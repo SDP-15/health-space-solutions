@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const connection = mysql.createPool({
-  host: 'sql8.freemysqlhosting.net', // Your connection adress (localhost).
-  user: 'sql8596986', // Your database's username.
-  password: 'zzRR3mNM8j', // Your database's password.
-  database: 'sql8596986', // Your database's name.
+  host: 'sdp-15.cdi3alkln8jp.eu-west-2.rds.amazonaws.com', // Your connection adress (localhost).
+  user: 'admin', // Your database's username.
+  password: 'jiphEx-woffez-8qaqto', // Your database's password.
+  database: 'sdp-15', // Your database's name.
 });
 
 // Starting our app.
@@ -31,6 +31,7 @@ app.get('/users', (req, res) => {
       // Getting the 'response' from the database and sending it to our route. This is were the data is.
       res.send(results);
     });
+    conn.release();
   });
 });
 
@@ -50,6 +51,7 @@ app.post('/login', jsonParser, (req, res) => {
         res.send(success);
       }
     );
+    conn.release();
   });
 });
 
@@ -89,6 +91,7 @@ app.post('/register', jsonParser, (req, res) => {
         }
       }
     );
+    conn.release();
   });
 });
 

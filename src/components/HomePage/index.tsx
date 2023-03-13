@@ -1,8 +1,11 @@
 import './style.css';
 import Footer from 'components/Footer';
+import { useNavigate } from 'react-router-dom';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import icon from '../../../assets/healthspace4.png';
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <div className="HomePage">
       <img src={icon} className="icon" alt="icon" />

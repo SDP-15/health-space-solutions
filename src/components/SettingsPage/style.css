@@ -27,20 +27,20 @@
 
 .form_input {
   text-align: center;
-  color:white;
+  color: white;
   padding: 10px;
   background: transparent;
   background-color: #1b1919;
   border: 0;
   border: 1px solid #575858;
-  font-size:0.9rem;
-  display:auto;
-  width:200px;
+  font-size: 0.9rem;
+  display: auto;
+  width: 200px;
 }
 
 label {
   margin-right: 8px;
-  padding:10px;
+  padding: 10px;
 }
 
 select {
@@ -76,6 +76,7 @@ select {
   opacity: 1;
 }
 
-.disturb,.notifications{
+.disturb,
+.notifications {
   padding: 10px;
 }

@@ -1,17 +1,13 @@
-
 .form-register {
   overflow-y: scroll;
   text-align: center;
-
 }
 
 .form-body-reg {
   padding: 20px 10px;
-  margin-left:200px;
-  margin-right:200px;
+  margin-left: 200px;
+  margin-right: 200px;
 }
-
-
 
 .form_input-reg {
   width: 100%;
@@ -21,8 +17,8 @@
   background: transparent;
   border: 0;
   border-bottom: 1px solid #575858;
-  font-size:0.9rem;
-  display:auto;
+  font-size: 0.9rem;
+  display: auto;
 }
 
 .footer {
@@ -31,14 +27,13 @@
 
 .header-reg {
   text-align: center;
-  font-family: Calibri, 'Gill Sans', 'Gill Sans MT',  'Trebuchet MS', sans-serif;
+  font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
   font-weight: 50;
   font-size: 20pt;
   padding: 2.5px;
   border-radius: 2px;
   border: white;
 }
-
 
 .btn-reg {
   background-color: rgb(137, 127, 127);
@@ -61,7 +56,7 @@
   opacity: 1;
 }
 
-.exit-reg{
+.exit-reg {
   text-align: center;
   color: white;
 }
@@ -74,8 +69,8 @@
   color: grey;
 }
 
-.icon-reg{
-  width:200px;
+.icon-reg {
+  width: 200px;
   display: block;
   margin-left: auto;
   margin-right: auto;

@@ -5,7 +5,7 @@ import icon from '../../../assets/healthspace4.png';
 
 function RegistrationForm() {
   const navigate = useNavigate();
-  const expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; // regex for email validation
+  const expression = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i; // regex for email validation
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');

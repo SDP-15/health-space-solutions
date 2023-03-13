@@ -1,21 +1,17 @@
-
 .form-login {
   overflow-y: scroll;
   text-align: center;
-
 }
 
 .form-body-log {
   padding: 10% 10%;
-  margin-left:100px;
-  margin-right:100px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .form-body > * {
   padding: 10px;
-  ;
 }
-
 
 .form_input-log {
   width: 100%;
@@ -25,15 +21,14 @@
   background: transparent;
   border: 0;
   border-bottom: 1px solid #575858;
-  font-size:0.9rem;
-  display:auto;
+  font-size: 0.9rem;
+  display: auto;
 }
 
 .footer-log {
   text-align: center;
-  bottom:0;
+  bottom: 0;
 }
-
 
 .header-log {
   text-align: center;
@@ -44,7 +39,6 @@
   border-radius: 2px;
   border: white;
 }
-
 
 .btn-log {
   background-color: rgb(137, 127, 127);
@@ -67,7 +61,7 @@
   opacity: 1;
 }
 
-.exit-log{
+.exit-log {
   text-align: center;
   color: white;
 }
@@ -76,14 +70,14 @@
   border-color: red;
 }
 
-.has-account-link {
-  color: grey;
+.no-account-link,
+.remember-me {
+  color: gray;
 }
 
-.icon-log{
-  width:200px;
+.icon-log {
+  width: 200px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
