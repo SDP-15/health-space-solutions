@@ -25,6 +25,12 @@
   flex-direction: row;
 }
 
+.heading{
+  font-family: Calibri,  'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  text-align: center;
+  font-size:20pt;
+}
+
 @media only screen and (max-width: 600px) {
   .wrapper {
     flex-direction: column;
