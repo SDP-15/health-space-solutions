@@ -1,18 +1,35 @@
+import { useEffect, useState } from 'react';
 import { LineChart, XAxis, YAxis, CartesianGrid, Line, Label } from 'recharts';
 import './style.css';
 
 function Graph() {
-  const data = [
-    { name: '09:00', score: 80 },
-    { name: '10:00', score: 90 },
-    { name: '11:00', score: 65 },
-    { name: '12:00', score: 85 },
-    { name: '13:00', score: 60 },
-    { name: '14:00', score: 62 },
-    { name: '15:00', score: 65 },
-    { name: '16:00', score: 50 },
-    { name: '17:00', score: 43 },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3000/score/moving_average')
+      .then((response) => response.json())
+      .then((res_data) => {
+        setData(
+          res_data.map((entry, index) => {
+            return { name: index, score: entry };
+          })
+        );
+        return 1;
+      })
+      .catch((err) => console.warn(err));
+  }, []);
+
+  console.log(data);
+  // const data = [
+  //   { name: '09:00', score: 80 },
+  //   { name: '10:00', score: 90 },
+  //   { name: '11:00', score: 65 },
+  //   { name: '12:00', score: 85 },
+  //   { name: '13:00', score: 60 },
+  //   { name: '14:00', score: 62 },
+  //   { name: '15:00', score: 65 },
+  //   { name: '16:00', score: 50 },
+  //   { name: '17:00', score: 43 },
+  // ];
 
   return (
     <div>
@@ -32,7 +49,7 @@ function Graph() {
             style={{ fontSize: '65%' }}
           />
         </XAxis>
-        <YAxis dataKey="score" domain={[0, 100]}>
+        <YAxis dataKey="score" domain={[0, 5]}>
           <Label
             angle={270}
             value="Posture Rating"

@@ -17,6 +17,34 @@ const connection = mysql.createPool({
 const app = express();
 app.use(cors());
 
+// Get the moving average of the day
+app.get('/score/moving_average', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /score/moving_average');
+
+  connection.getConnection((err, conn) => {
+    conn.query(
+      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
+      (error, results) => {
+        if (error) throw error;
+
+        // Getting the 'response' from the database and sending it to our route. This is were the data is.
+        const scores = results.map((entry) => entry.score).reverse();
+        const window = 2;
+        const movingAverage = [];
+        for (let i = 0; i < scores.length - window + 1; i += 1) {
+          const data = scores.slice(i, i + window);
+          const sum = data.reduce((a, b) => a + b, 0);
+          const avg = sum / data.length || 0;
+          movingAverage.push(avg);
+        }
+        res.send(movingAverage);
+      }
+    );
+    conn.release();
+  });
+});
+
 // Creating a GET route that returns data from the 'users' table.
 app.get('/users', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
