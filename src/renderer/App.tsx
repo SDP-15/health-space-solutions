@@ -7,6 +7,7 @@ import Welcome from 'components/WelcomePage';
 import LoginForm from 'components/Login';
 import Footer from 'components/Footer';
 import Seat from 'components/Seat';
+import PosturePal from 'components/PosturePal';
 
 function Home() {
   return (
@@ -26,7 +27,7 @@ export default function App() {
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/seat" element={<Seat />} />
+        <Route path="/seat" element={<PosturePal />} />
         <Route path="/eye" element={<EyeTrackingPage />} />
       </Routes>
     </Router>
