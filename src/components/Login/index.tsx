@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import './style.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import icon from '../../../assets/healthspace4.png';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -74,30 +75,25 @@ function LoginForm() {
   };
 
   return (
-    <div className="form">
-      <div className="header row col-12 d-flex justify-content-center">
-        <h3>Login</h3>
+    <div className="form-login">
+      <img src={icon} className="icon-log" alt="icon" />
+      <div className="header-log row col-12 d-flex justify-content-center">
+        Log In
       </div>
-      <div className="form-body">
+      <div className="form-body-log">
         <div className="email">
-          <label className="form__label" htmlFor="email">
-            Email{' '}
-          </label>
           <input
             type="email"
             id="email"
-            className="form__input"
+            className="form_input-log"
             value={email}
             onChange={(e) => handleInputChange(e)}
             placeholder="Email"
           />
         </div>
         <div className="password">
-          <label className="form__label" htmlFor="password">
-            Password{' '}
-          </label>
           <input
-            className="form__input"
+            className="form_input-log"
             type="password"
             id="password"
             value={password}
@@ -106,13 +102,13 @@ function LoginForm() {
           />
         </div>
       </div>
-      <div className="footer">
+      <div className="footer-log">
         <button
           onClick={() => handleSubmit()}
           type="submit"
-          className={`btn ${passwordValid ? '' : 'has-error'}`}
+          className={`btn-log ${passwordValid ? '' : 'has-error'}`}
         >
-          Login
+          Log In
         </button>
       </div>
       <div className="remember-me">
