@@ -7,8 +7,52 @@
   background: #1b1919;
 }
 
-.Form {
-  margin: 10px;
+.header-set {
+  text-align: center;
+  font-family: Calibri;
+  font-weight: 50;
+  font-size: 30pt;
+  padding: 2.5px;
+  border-radius: 2px;
+  border: white;
+  padding-bottom: 30px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form_input {
+  text-align: center;
+  color:white;
+  padding: 10px;
+  background: transparent;
+  background-color: #1b1919;
+  border: 0;
+  border: 1px solid #575858;
+  font-size:0.9rem;
+  display:auto;
+  width:200px;
+}
+
+label {
+  margin-right: 8px;
+  padding:10px;
+}
+
+select {
+  margin-left: 8px;
+  padding: 10px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .button-class {
@@ -30,4 +74,8 @@
 .button-class:hover {
   transform: scale(1.05);
   opacity: 1;
+}
+
+.disturb,.notifications{
+  padding: 10px;
 }
