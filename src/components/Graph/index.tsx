@@ -16,12 +16,11 @@ function Graph() {
 
   return (
     <div>
-      <h1>Todays Posture Scoring</h1>
       <LineChart
-        width={620}
-        height={400}
         data={data}
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+        width={400}
+        height={240}
       >
         <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
         <XAxis dataKey="name">

@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+.pictures {
+  margin: 10px;
+}
+.piechart {
+  align-self: flex-end;
+}
+.graph {
+  align-self: flex-end;
+  margin-left: 20px;
+}
+.footer {
+  align-self: flex-end;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
