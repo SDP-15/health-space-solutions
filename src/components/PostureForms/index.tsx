@@ -2,7 +2,6 @@ import './style.css';
 import crossedLegsIcon from '../../../assets/crossedlegsIcon.png';
 import hunchingIcon from '../../../assets/hunchingoverIcon.png';
 import slouchingIcon from '../../../assets/slouchingIcon.png';
-import CanvasJSReact from './canvasjs.react';
 
 export default function Visualisations() {
   const hunchingPer = 10;
