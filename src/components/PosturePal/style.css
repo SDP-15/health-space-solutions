@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width:100%;
+  max-height: calc(100% - 80px);  /*subtract the height of the footer */
+  overflow: auto;
+}
+.pictures {
+  margin-left:10%;
+  margin-top:2%;
+  margin-bottom: 15%;
+  height: 10%;
+  width:70%
+}
+.piechart {
+  align-self: flex-end;
+  width:40%;
+}
+
+.piechart, .graph{
+  height:90%;
+  margin-bottom: 5%;
+}
+.graph {
+  align-self: flex-end;
+  margin-left: 20px;
+  width:90%;
+
+}
+.footer {
+  align-self: flex-end;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width:80%;
+  height: 70%;
+}
+
+.heading{
+  margin-top: 2px;
+  font-family: Calibri,  'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  text-align: center;
+  font-size:2.2vw;
+}
+
+/*@media only screen and (max-width: 600px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .graph {
+    margin-left: 0;
+    margin-top: 20px;
+    align-self: center;
+  }
+  .piechart {
+    margin-bottom: 20px;
+    align-self: center;
+  }
+}*/
+
+
+

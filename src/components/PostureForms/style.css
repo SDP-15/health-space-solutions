@@ -1,0 +1,48 @@
+.section{
+ width: 100%;
+ height: 100%;
+}
+
+.bar{
+  height: 17px;
+  border-radius: 10px;
+}
+
+.icons{
+  width:70%
+}
+
+/* (A) WRAPPER */
+.hoverwrap {
+  align-items: center;
+  position: relative; /* required for (c2) */
+  display: inline-block;
+  padding:5px;
+  width: 30%; /* Added this line to set a width for each hoverwrap */
+  box-sizing: border-box; /* Added this line to include padding in width calculation */
+  vertical-align: top; /* Added this line to align images from top */
+}
+
+
+/* (C) CAPTION */
+.hovercap {
+  /* (C1) DIMENSIONS */
+  padding: 10px;
+  position: absolute;
+  bottom: 40%;
+  width:63%;
+  text-align: center;
+
+  /* (C3) COLORS */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+/* (D) SHOW/HIDE */
+.hovercap {
+  visibility: none; opacity: 0;
+  transition: opacity 0.3s;
+}
+.hoverwrap:hover .hovercap {
+  visibility: visible; opacity: 1;
+}
