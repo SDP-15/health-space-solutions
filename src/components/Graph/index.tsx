@@ -46,7 +46,7 @@ function Graph() {
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
       >
         <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
-        <XAxis dataKey="name">
+        <XAxis dataKey="name" minTickGap={100}>
           <Label
             value="Time of Day"
             offset={-3}
@@ -62,7 +62,13 @@ function Graph() {
             style={{ fontSize: '0.8vw' }}
           />
         </YAxis>
-        <Line type="monotone" dataKey="score" stroke="#fff" yAxisId={0} />
+        <Line
+          type="monotone"
+          dataKey="score"
+          stroke="#fff"
+          yAxisId={0}
+          dot={false}
+        />
       </LineChart>
     </ResponsiveContainer>
   );
