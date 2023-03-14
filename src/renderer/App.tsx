@@ -5,28 +5,27 @@ import EyeTrackingPage from 'components/EyeTrackingPage';
 import SettingsPage from 'components/SettingsPage';
 import Welcome from 'components/WelcomePage';
 import LoginForm from 'components/Login';
-import Footer from 'components/Footer';
-import Seat from 'components/Seat';
 import PosturePal from 'components/PosturePal';
-
-function Home() {
-  return (
-    <div>
-      <div> Home </div>
-      <Footer />
-    </div>
-  );
-}
+import PrivateRoute from 'components/PrivateRoute';
+import HomePage from 'components/HomePage';
 
 export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Welcome />} />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <HomePage />
+              <Welcome />
+            </PrivateRoute>
+          }
+        />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/seat" element={<PosturePal />} />
         <Route path="/eye" element={<EyeTrackingPage />} />
       </Routes>

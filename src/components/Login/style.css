@@ -1,62 +1,83 @@
-.form {
-  background-color: white;
-  border-radius: 5px;
-  width: 550px;
-  margin: 20px auto;
-  padding: 20px;
-  /* height: 600px; */
-}
-
-.form-body {
-  text-align: left;
-  padding: 20px 10px;
-}
-
-.form-body > * {
-  padding: 5px;
-}
-
-.form__label {
-  width: 40%;
-  display: block;
-  color: black;
-}
-
-.form_input {
-  width: 60%;
-  display: block;
-  color: black;
-}
-
-.footer {
+.form-login {
+  overflow-y: scroll;
   text-align: center;
 }
 
-.header {
-  background-color: gray;
-  padding: 5px;
+.form-body-log {
+  padding: 10% 10%;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.form-body > * {
+  padding: 10px;
+}
+
+.form_input-log {
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 30px 0px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #575858;
+  font-size: 0.9rem;
+  display: auto;
+}
+
+.footer-log {
+  text-align: center;
+  bottom: 0;
+}
+
+.header-log {
+  text-align: center;
+  font-family: Calibri;
+  font-weight: 50;
+  font-size: 30pt;
+  padding: 2.5px;
   border-radius: 2px;
   border: white;
 }
 
-.btn {
-  background-color: pink;
-  width: 100%;
-  border-radius: 2px;
-  border-color: black;
-  border-width: 1px;
-  border-style: solid;
+.btn-log {
+  background-color: rgb(137, 127, 127);
+  color: rgb(7, 4, 1);
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  appearance: none;
+  font-size: 1.3rem;
+  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
+    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
+  transition: all ease-in 0.1s;
+  cursor: pointer;
+  opacity: 0.9;
+  margin: 10px;
 }
 
-.btn:hover {
-  background-color: rgb(179, 135, 142);
-  transition: 200ms ease-in;
+.btn-log:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.exit-log {
+  text-align: center;
+  color: white;
 }
 
 .has-error {
   border-color: red;
 }
 
-.no-account-link {
+.no-account-link,
+.remember-me {
   color: gray;
+}
+
+.icon-log {
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -11,7 +11,7 @@ export default function Welcome() {
       <div className="Hello">
         <NavLink to="/login">
           <button className="button-class" type="button">
-            Sign In
+            Log In
           </button>
         </NavLink>
         <NavLink to="/register">

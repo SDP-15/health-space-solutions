@@ -7,36 +7,15 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 const connection = mysql.createPool({
-  host: 'sql8.freemysqlhosting.net', // Your connection adress (localhost).
-  user: 'sql8596986', // Your database's username.
-  password: 'zzRR3mNM8j', // Your database's password.
-  database: 'sql8596986', // Your database's name.
+  host: 'sdp-15.cdi3alkln8jp.eu-west-2.rds.amazonaws.com', // Your connection adress (localhost).
+  user: 'admin', // Your database's username.
+  password: 'jiphEx-woffez-8qaqto', // Your database's password.
+  database: 'sdp-15', // Your database's name.
 });
 
 // Starting our app.
 const app = express();
 app.use(cors());
-
-// Creating a GET route that returns data from the 'pressure_sensor_data' table.
-app.get('/pressure_sensor_data', (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  console.log('Request received on GET /pressure_sensor_data');
-  // Connecting to the database.
-  connection.getConnection((err, conn) => {
-    // Executing the MySQL query (select all data from the 'pressure_sensor_data' table).
-    conn.query(
-      'SELECT * FROM pressure_sensor_data ORDER BY time DESC LIMIT 3',
-      (error, results) => {
-        // If some error occurs, we throw an error.
-        if (error) throw error;
-        // Getting the 'response' from the database and sending it to our route. This is were the data is.
-        res.send(results);
-        console.log('results: ', results);
-      }
-    );
-    conn.release();
-  });
-});
 
 // Creating a GET route that returns data from the 'users' table.
 app.get('/users', (req, res) => {
