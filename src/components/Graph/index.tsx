@@ -1,5 +1,13 @@
-import { useEffect, useState } from 'react';
-import { LineChart, XAxis, YAxis, CartesianGrid, Line, Label } from 'recharts';
+import { useState, useEffect } from 'react';
+import {
+  LineChart,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Line,
+  Label,
+  ResponsiveContainer,
+} from 'recharts';
 import './style.css';
 
 function Graph() {
@@ -32,11 +40,8 @@ function Graph() {
   // ];
 
   return (
-    <div>
-      <h1>Todays Posture Scoring</h1>
+    <ResponsiveContainer width="100%" height="70%">
       <LineChart
-        width={620}
-        height={400}
         data={data}
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
       >
@@ -44,21 +49,22 @@ function Graph() {
         <XAxis dataKey="name">
           <Label
             value="Time of Day"
-            offset={0}
+            offset={-3}
             position="insideBottom"
-            style={{ fontSize: '65%' }}
+            style={{ fontSize: '0.8vw' }}
           />
         </XAxis>
         <YAxis dataKey="score" domain={[0, 100]}>
           <Label
             angle={270}
+            offset={-10}
             value="Posture Rating"
-            style={{ fontSize: '65%' }}
+            style={{ fontSize: '0.8vw' }}
           />
         </YAxis>
         <Line type="monotone" dataKey="score" stroke="#fff" yAxisId={0} />
       </LineChart>
-    </div>
+    </ResponsiveContainer>
   );
 }
 
