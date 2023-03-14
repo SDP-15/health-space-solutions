@@ -1,4 +1,4 @@
-import { PieChart, Pie, Legend, Label } from 'recharts';
+import { PieChart, Pie, Legend, Label, ResponsiveContainer } from 'recharts';
 import './style.css';
 import { useState, ChangeEvent } from 'react';
 import { BiRefresh } from 'react-icons/bi';
@@ -40,17 +40,23 @@ export default function piechart() {
           </button>
         </div>
       </form>
-      <PieChart width={250} height={250}>
-        <Pie data={data} dataKey="time" innerRadius={60} outerRadius={80}>
-          <Label
-            value={`TOTAL ${totalTime}`}
-            position="center"
-            fontSize={14}
-            fill="white"
-          />
-        </Pie>
-        <Legend verticalAlign="bottom" height={36} iconType="circle" />
-      </PieChart>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart /* width={250} height={250} */>
+          <Pie
+            data={data}
+            dataKey="time"
+            /* innerRadius={60} outerRadius={80} */
+          >
+            <Label /*
+              value={`TOTAL ${totalTime}`}
+              position="center"
+              fontSize={14}
+              fill="white" */
+            />
+          </Pie>
+          <Legend verticalAlign="bottom" height={36} iconType="circle" />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }

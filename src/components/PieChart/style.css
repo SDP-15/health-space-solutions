@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width:100%;
+  height: 100%;
+
 }
 
 Label {
@@ -45,8 +48,8 @@ Label {
   background-color: #1b1919;
   border: 0;
   border: 1px solid #575858;
-  font-size:0.9rem;
-  width:200px;
+  font-size:1.2vw;
+  width:150%;
   border-radius: 10px;
 }
 

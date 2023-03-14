@@ -1,4 +1,13 @@
-import { LineChart, XAxis, YAxis, CartesianGrid, Line, Label } from 'recharts';
+import { useRef, useEffect } from 'react';
+import {
+  LineChart,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Line,
+  Label,
+  ResponsiveContainer,
+} from 'recharts';
 import './style.css';
 
 function Graph() {
@@ -15,32 +24,31 @@ function Graph() {
   ];
 
   return (
-    <div>
+    <ResponsiveContainer width="100%" height="70%">
       <LineChart
         data={data}
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-        width={400}
-        height={240}
       >
         <CartesianGrid stroke="#f5f5f5" strokeDasharray="5 5" />
         <XAxis dataKey="name">
           <Label
             value="Time of Day"
-            offset={0}
+            offset={-3}
             position="insideBottom"
-            style={{ fontSize: '65%' }}
+            style={{ fontSize: '0.8vw' }}
           />
         </XAxis>
         <YAxis dataKey="score" domain={[0, 100]}>
           <Label
             angle={270}
+            offset={-10}
             value="Posture Rating"
-            style={{ fontSize: '65%' }}
+            style={{ fontSize: '0.8vw' }}
           />
         </YAxis>
         <Line type="monotone" dataKey="score" stroke="#fff" yAxisId={0} />
       </LineChart>
-    </div>
+    </ResponsiveContainer>
   );
 }
 

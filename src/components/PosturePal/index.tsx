@@ -15,7 +15,7 @@ export default function PosturePalPage() {
           <Piechart />
         </div>
         <div className="graph">
-          <p className="heading">Your Posture Scoring</p>
+          <p className="heading"> Your Posture Scoring</p>
           <Graph />
         </div>
       </div>
