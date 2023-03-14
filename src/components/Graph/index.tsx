@@ -9,8 +9,8 @@ function Graph() {
       .then((response) => response.json())
       .then((res_data) => {
         setData(
-          res_data.map((entry, index) => {
-            return { name: index, score: entry };
+          res_data.map((score: number, index: number) => {
+            return { name: index, score };
           })
         );
         return 1;
@@ -49,7 +49,7 @@ function Graph() {
             style={{ fontSize: '65%' }}
           />
         </XAxis>
-        <YAxis dataKey="score" domain={[0, 5]}>
+        <YAxis dataKey="score" domain={[0, 100]}>
           <Label
             angle={270}
             value="Posture Rating"

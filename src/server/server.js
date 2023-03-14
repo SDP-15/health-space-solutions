@@ -24,19 +24,19 @@ app.get('/score/moving_average', (req, res) => {
 
   connection.getConnection((err, conn) => {
     conn.query(
-      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
+      'SELECT * FROM score ORDER BY timestamp ASC LIMIT 500;',
       (error, results) => {
         if (error) throw error;
 
         // Getting the 'response' from the database and sending it to our route. This is were the data is.
         const scores = results.map((entry) => entry.score).reverse();
-        const window = 2;
+        const window = 30;
         const movingAverage = [];
         for (let i = 0; i < scores.length - window + 1; i += 1) {
           const data = scores.slice(i, i + window);
           const sum = data.reduce((a, b) => a + b, 0);
           const avg = sum / data.length || 0;
-          movingAverage.push(avg);
+          movingAverage.push(avg * 100); // In percent
         }
         res.send(movingAverage);
       }
