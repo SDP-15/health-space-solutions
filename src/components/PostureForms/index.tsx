@@ -1,36 +1,48 @@
 import './style.css';
+import { useEffect, useState } from 'react';
 import crossedLegsIcon from '../../../assets/crossedlegsIcon.png';
 import hunchingIcon from '../../../assets/hunchingoverIcon.png';
 import slouchingIcon from '../../../assets/slouchingIcon.png';
 
 export default function Visualisations() {
-  const hunchingPer = 10;
-  const slouchingPer = 30;
-  const crossedPer = 60;
+  const [hunchingPer, setHunchingPer] = useState(0);
+  const [slouchingPer, setSlouchingPer] = useState(0);
+  const [crossedPer, setCrossedPer] = useState(0);
+  useEffect(() => {
+    fetch('http://localhost:3000/score/split')
+      .then((response) => response.json())
+      .then((res_data) => {
+        setHunchingPer(Math.round(res_data.hunching * 100));
+        setSlouchingPer(Math.round(res_data.slouching * 100));
+        setCrossedPer(Math.round(res_data.crossing_legs * 100));
+        return 1;
+      })
+      .catch((err) => console.warn(err));
+  }, []);
 
   let barColorH: string;
   let barColorS: string;
   let barColorC: string;
 
-  if (hunchingPer < 20) {
+  if (hunchingPer < 10) {
     barColorH = 'lightgreen';
-  } else if (hunchingPer >= 20 && hunchingPer < 50) {
+  } else if (hunchingPer >= 10 && hunchingPer < 30) {
     barColorH = 'orange';
   } else {
     barColorH = '#DC143C';
   }
 
-  if (slouchingPer < 20) {
+  if (slouchingPer < 10) {
     barColorS = 'lightgreen';
-  } else if (slouchingPer >= 20 && slouchingPer < 50) {
+  } else if (slouchingPer >= 10 && slouchingPer < 30) {
     barColorS = 'orange';
   } else {
     barColorS = '#DC143C';
   }
 
-  if (crossedPer < 20) {
+  if (crossedPer < 10) {
     barColorC = 'lightgreen';
-  } else if (crossedPer >= 20 && crossedPer < 50) {
+  } else if (crossedPer >= 10 && crossedPer < 30) {
     barColorC = 'orange';
   } else {
     barColorC = '#DC143C';

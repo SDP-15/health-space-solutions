@@ -24,10 +24,9 @@ app.get('/score/moving_average', (req, res) => {
 
   connection.getConnection((err, conn) => {
     conn.query(
-      'SELECT * FROM score ORDER BY timestamp ASC LIMIT 500;',
+      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
       (error, results) => {
         if (error) throw error;
-
         // Getting the 'response' from the database and sending it to our route. This is were the data is.
         const scores = results.map((entry) => entry.score).reverse();
         const window = 30;
@@ -39,6 +38,47 @@ app.get('/score/moving_average', (req, res) => {
           movingAverage.push(avg * 100); // In percent
         }
         res.send(movingAverage);
+      }
+    );
+    conn.release();
+  });
+});
+
+// Get the moving average of the day
+app.get('/score/split', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /score/moving_average');
+
+  connection.getConnection((err, conn) => {
+    conn.query(
+      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
+      (error, results) => {
+        if (error) throw error;
+
+        // Getting the 'response' from the database and sending it to our route. This is were the data is.
+        const reasons = results.map((entry) => entry.reason);
+        const counts = [0, 0, 0, 0];
+        for (let i = 0; i < reasons.length; i += 1) {
+          const reason = reasons[i];
+          if (reason === 0) {
+            counts[0] += 1; // Good posture
+          } else if (reason === 1 || reason === 2) {
+            counts[1] += 1; // Crossing legs
+          } else if (reason === 3) {
+            counts[2] += 1; // Slouching
+          } else if (reason === 4) {
+            counts[3] += 1; // Hunching
+          }
+        }
+        const sum = counts.reduce((a, b) => a + b, 0);
+        const percentages = counts.map((value) => value / sum);
+        const dict = {
+          good: percentages[0],
+          crossing_legs: percentages[1],
+          slouching: percentages[2],
+          hunching: percentages[3],
+        };
+        res.send(dict);
       }
     );
     conn.release();
