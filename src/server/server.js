@@ -17,6 +17,95 @@ const connection = mysql.createPool({
 const app = express();
 app.use(cors());
 
+// Get the moving average of the day
+app.get('/score/moving_average', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /score/moving_average');
+
+  connection.getConnection((err, conn) => {
+    conn.query(
+      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
+      (error, results) => {
+        if (error) throw error;
+        // Getting the 'response' from the database and sending it to our route. This is were the data is.
+        const scores = results.map((entry) => entry.score).reverse();
+        const window = 30;
+        const movingAverage = [];
+        for (let i = 0; i < scores.length - window + 1; i += 1) {
+          const data = scores.slice(i, i + window);
+          const sum = data.reduce((a, b) => a + b, 0);
+          const avg = sum / data.length || 0;
+          movingAverage.push(avg * 100); // In percent
+        }
+        res.send(movingAverage);
+      }
+    );
+    conn.release();
+  });
+});
+
+// Get the good/bad percentage
+app.get('/score/percentage', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /score/moving_average');
+
+  connection.getConnection((err, conn) => {
+    conn.query(
+      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
+      (error, results) => {
+        if (error) throw error;
+        // Getting the 'response' from the database and sending it to our route. This is were the data is.
+        const scores = results.map((entry) => entry.score);
+        const sum = scores.reduce((a, b) => a + b, 0);
+        const percentageGood = sum / scores.length;
+        res.send({ good: percentageGood, bad: 1 - percentageGood });
+      }
+    );
+    conn.release();
+  });
+});
+
+// Get the moving average of the day
+app.get('/score/split', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /score/moving_average');
+
+  connection.getConnection((err, conn) => {
+    conn.query(
+      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
+      (error, results) => {
+        if (error) throw error;
+
+        // Getting the 'response' from the database and sending it to our route. This is were the data is.
+        const reasons = results.map((entry) => entry.reason);
+        const counts = [0, 0, 0, 0];
+        for (let i = 0; i < reasons.length; i += 1) {
+          const reason = reasons[i];
+          if (reason < 1) {
+            counts[0] += 1; // Good posture
+          } else if (reason === 1 || reason === 2) {
+            counts[1] += 1; // Crossing legs
+          } else if (reason === 3) {
+            counts[2] += 1; // Slouching
+          } else if (reason === 4) {
+            counts[3] += 1; // Hunching
+          }
+        }
+        const sum = counts.reduce((a, b) => a + b, 0);
+        const percentages = counts.map((value) => value / sum);
+        const dict = {
+          good: percentages[0],
+          crossing_legs: percentages[1],
+          slouching: percentages[2],
+          hunching: percentages[3],
+        };
+        res.send(dict);
+      }
+    );
+    conn.release();
+  });
+});
+
 // Creating a GET route that returns data from the 'users' table.
 app.get('/users', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
