@@ -44,6 +44,27 @@ app.get('/score/moving_average', (req, res) => {
   });
 });
 
+// Get the good/bad percentage
+app.get('/score/percentage', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /score/moving_average');
+
+  connection.getConnection((err, conn) => {
+    conn.query(
+      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
+      (error, results) => {
+        if (error) throw error;
+        // Getting the 'response' from the database and sending it to our route. This is were the data is.
+        const scores = results.map((entry) => entry.score);
+        const sum = scores.reduce((a, b) => a + b, 0);
+        const percentageGood = sum / scores.length;
+        res.send({ good: percentageGood, bad: 1 - percentageGood });
+      }
+    );
+    conn.release();
+  });
+});
+
 // Get the moving average of the day
 app.get('/score/split', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
@@ -60,7 +81,7 @@ app.get('/score/split', (req, res) => {
         const counts = [0, 0, 0, 0];
         for (let i = 0; i < reasons.length; i += 1) {
           const reason = reasons[i];
-          if (reason === 0) {
+          if (reason < 1) {
             counts[0] += 1; // Good posture
           } else if (reason === 1 || reason === 2) {
             counts[1] += 1; // Crossing legs
