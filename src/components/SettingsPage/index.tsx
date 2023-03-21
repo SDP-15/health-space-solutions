@@ -86,14 +86,14 @@ export default function SettingsPage() {
           Apply Changes
         </button>
       </form>
-      <form id="logout_form">
+      <form className="form-container">
         <button
           form="logout_form"
           onClick={() => forgetUser()}
           type="submit"
-          className="logout_button"
+          className="button-class-logout"
         >
-          Log out
+          Log Out
         </button>
       </form>
       <Footer />
