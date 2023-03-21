@@ -8,6 +8,8 @@ export default function Visualisations(timeframe: { timeframe: string }) {
   const [hunchingPer, setHunchingPer] = useState(0);
   const [slouchingPer, setSlouchingPer] = useState(0);
   const [crossedPer, setCrossedPer] = useState(0);
+  const [time, setTime] = useState(Date.now());
+
   useEffect(() => {
     fetch(`http://localhost:3000/score/split?timeframe=${timeframe.timeframe}`)
       .then((response) => response.json())
@@ -18,7 +20,12 @@ export default function Visualisations(timeframe: { timeframe: string }) {
         return 1;
       })
       .catch((err) => console.warn(err));
-  }, [timeframe]);
+
+    const interval = setInterval(() => setTime(Date.now()), 60000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timeframe, time]);
 
   let barColorH: string;
   let barColorS: string;

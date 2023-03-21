@@ -28,7 +28,9 @@ function DateFormatter(unix_timestamp: number) {
 }
 
 function Graph(timeframe: { timeframe: string }) {
+  const [time, setTime] = useState(Date.now());
   const [data, setData] = useState([]);
+
   useEffect(() => {
     fetch(
       `http://localhost:3000/score/moving_average?timeframe=${timeframe.timeframe}`
@@ -39,7 +41,11 @@ function Graph(timeframe: { timeframe: string }) {
         return 1;
       })
       .catch((err) => console.warn(err));
-  }, [timeframe]);
+    const interval = setInterval(() => setTime(Date.now()), 10000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timeframe, time]);
 
   return (
     <ResponsiveContainer width="100%" height="70%">

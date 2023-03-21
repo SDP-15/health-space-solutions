@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 export default function Piechart(timeframe: { timeframe: string }) {
   const [goodPer, setGoodPer] = useState(0);
   const [badPer, setBadPer] = useState(0);
+  const [time, setTime] = useState(Date.now());
+
   useEffect(() => {
     fetch(
       `http://localhost:3000/score/percentage?timeframe=${timeframe.timeframe}`
@@ -16,7 +18,12 @@ export default function Piechart(timeframe: { timeframe: string }) {
         return 1;
       })
       .catch((err) => console.warn(err));
-  }, [timeframe]);
+
+    const interval = setInterval(() => setTime(Date.now()), 60000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timeframe, time]);
 
   const data = [
     { name: 'Good', time: goodPer, fill: 'lightgreen' },
