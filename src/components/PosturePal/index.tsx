@@ -4,6 +4,7 @@ import PostureForms from 'components/PostureForms';
 import Footer from 'components/Footer';
 import './style.css';
 import { useEffect, useState } from 'react';
+import settingsVar from 'settingsVar';
 
 export default function PosturePalPage() {
   const [timeframe, setTimeframe] = useState('today');
@@ -13,7 +14,9 @@ export default function PosturePalPage() {
   const threshold = 0.5;
 
   useEffect(() => {
-    fetch(`http://localhost:3000/score/percentage?timeframe=5min`)
+    fetch(
+      `http://localhost:3000/score/percentage?timeframe=${settingsVar.notifyAfterMins}min`
+    )
       .then((response) => response.json())
       .then((res_data) => {
         if (res_data.good < threshold) {
@@ -25,7 +28,10 @@ export default function PosturePalPage() {
       })
       .catch((err) => console.warn(err));
 
-    const interval = setInterval(() => setTime(Date.now()), 5 * 60000);
+    const interval = setInterval(
+      () => setTime(Date.now()),
+      settingsVar.notifyAfterMins * 60000
+    );
     return () => {
       clearInterval(interval);
     };
