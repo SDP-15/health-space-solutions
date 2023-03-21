@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const moment = require('moment');
 
 // create application/json parser
 const jsonParser = bodyParser.json();
@@ -21,32 +22,43 @@ app.use(cors());
 app.get('/score/moving_average', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   console.log('Request received on GET /score/moving_average');
+  const { timeframe } = req.query;
+  let query = 'SELECT * FROM score';
+  if (timeframe === 'today') {
+    query += ` WHERE \`timestamp\` > '${moment().format(
+      'YYYY-MM-DD'
+    )}' ORDER BY timestamp DESC;`;
+  } else if (timeframe === '30min') {
+    query += ` WHERE \`timestamp\` > '${moment()
+      .subtract(30, 'minutes')
+      .format('YYYY-MM-DD HH:mm:ss')}' ORDER BY timestamp DESC;`;
+  } else {
+    throw Error('Invalid Timeframe');
+  }
+  console.log(query);
 
   connection.getConnection((err, conn) => {
-    conn.query(
-      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 1000;',
-      (error, results) => {
-        if (error) throw error;
-        // Getting the 'response' from the database and sending it to our route. This is were the data is.
-        const dataTuples = results.reverse();
-        const window = 30;
-        const movingAverage = [];
-        for (let i = 0; i < dataTuples.length - window + 1; i += 1) {
-          const data = dataTuples
-            .slice(i, i + window)
-            .map((entry) => entry.score);
-          const sum = data.reduce((a, b) => a + b, 0);
-          const avg = sum / data.length || 0;
-          movingAverage.push({
-            score: avg * 100,
-            timestamp: Math.floor(
-              new Date(dataTuples[i + window - 1].timestamp).getTime() / 1000
-            ),
-          }); // In percent
-        }
-        res.send(movingAverage);
+    conn.query(query, (error, results) => {
+      if (error) throw error;
+      // Getting the 'response' from the database and sending it to our route. This is were the data is.
+      const dataTuples = results.reverse();
+      const window = 30;
+      const movingAverage = [];
+      for (let i = 0; i < dataTuples.length - window + 1; i += 1) {
+        const data = dataTuples
+          .slice(i, i + window)
+          .map((entry) => entry.score);
+        const sum = data.reduce((a, b) => a + b, 0);
+        const avg = sum / data.length || 0;
+        movingAverage.push({
+          score: avg * 100,
+          timestamp: Math.floor(
+            new Date(dataTuples[i + window - 1].timestamp).getTime() / 1000
+          ),
+        }); // In percent
       }
-    );
+      res.send(movingAverage);
+    });
     conn.release();
   });
 });
@@ -54,20 +66,31 @@ app.get('/score/moving_average', (req, res) => {
 // Get the good/bad percentage
 app.get('/score/percentage', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
-  console.log('Request received on GET /score/moving_average');
+  console.log('Request received on GET /score/percentage');
+  const { timeframe } = req.query;
+  let query = 'SELECT * FROM score';
+  if (timeframe === 'today') {
+    query += ` WHERE \`timestamp\` > '${moment().format(
+      'YYYY-MM-DD'
+    )}' ORDER BY timestamp DESC;`;
+  } else if (timeframe === '30min') {
+    query += ` WHERE \`timestamp\` > '${moment()
+      .subtract(30, 'minutes')
+      .format('YYYY-MM-DD HH:mm:ss')}' ORDER BY timestamp DESC;`;
+  } else {
+    throw Error('Invalid Timeframe');
+  }
+  console.log(query);
 
   connection.getConnection((err, conn) => {
-    conn.query(
-      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
-      (error, results) => {
-        if (error) throw error;
-        // Getting the 'response' from the database and sending it to our route. This is were the data is.
-        const scores = results.map((entry) => entry.score);
-        const sum = scores.reduce((a, b) => a + b, 0);
-        const percentageGood = sum / scores.length;
-        res.send({ good: percentageGood, bad: 1 - percentageGood });
-      }
-    );
+    conn.query(query, (error, results) => {
+      if (error) throw error;
+      // Getting the 'response' from the database and sending it to our route. This is were the data is.
+      const scores = results.map((entry) => entry.score);
+      const sum = scores.reduce((a, b) => a + b, 0);
+      const percentageGood = sum / scores.length;
+      res.send({ good: percentageGood, bad: 1 - percentageGood });
+    });
     conn.release();
   });
 });
@@ -75,40 +98,51 @@ app.get('/score/percentage', (req, res) => {
 // Get the moving average of the day
 app.get('/score/split', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
-  console.log('Request received on GET /score/moving_average');
+  console.log('Request received on GET /score/split');
+  const { timeframe } = req.query;
+  let query = 'SELECT * FROM score';
+  if (timeframe === 'today') {
+    query += ` WHERE \`timestamp\` > '${moment().format(
+      'YYYY-MM-DD'
+    )}' ORDER BY timestamp DESC;`;
+  } else if (timeframe === '30min') {
+    query += ` WHERE \`timestamp\` > '${moment()
+      .subtract(30, 'minutes')
+      .format('YYYY-MM-DD HH:mm:ss')}' ORDER BY timestamp DESC;`;
+  } else {
+    throw Error('Invalid Timeframe');
+  }
+  console.log(query);
 
   connection.getConnection((err, conn) => {
-    conn.query(
-      'SELECT * FROM score ORDER BY timestamp DESC LIMIT 500;',
-      (error, results) => {
-        if (error) throw error;
+    conn.query(query, (error, results) => {
+      if (error) throw error;
 
-        // Getting the 'response' from the database and sending it to our route. This is were the data is.
-        const reasons = results.map((entry) => entry.reason);
-        const counts = [0, 0, 0, 0];
-        for (let i = 0; i < reasons.length; i += 1) {
-          const reason = reasons[i];
-          if (reason < 1) {
-            counts[0] += 1; // Good posture
-          } else if (reason === 1 || reason === 2) {
-            counts[1] += 1; // Crossing legs
-          } else if (reason === 3) {
-            counts[2] += 1; // Slouching
-          } else if (reason === 4) {
-            counts[3] += 1; // Hunching
-          }
+      // Getting the 'response' from the database and sending it to our route. This is were the data is.
+      const reasons = results.map((entry) => entry.reason);
+      const counts = [0, 0, 0, 0];
+      for (let i = 0; i < reasons.length; i += 1) {
+        const reason = reasons[i];
+        if (reason < 1) {
+          counts[0] += 1; // Good posture
+        } else if (reason === 1 || reason === 2) {
+          counts[1] += 1; // Crossing legs
+        } else if (reason === 3) {
+          counts[2] += 1; // Slouching
+        } else if (reason === 4) {
+          counts[3] += 1; // Hunching
         }
-        const sum = counts.reduce((a, b) => a + b, 0);
-        const percentages = counts.map((value) => value / sum);
-        const dict = {
-          good: percentages[0],
-          crossing_legs: percentages[1],
-          slouching: percentages[2],
-          hunching: percentages[3],
-        };
-        res.send(dict);
       }
-    );
+      const sum = counts.reduce((a, b) => a + b, 0);
+      const percentages = counts.map((value) => value / sum);
+      const dict = {
+        good: percentages[0],
+        crossing_legs: percentages[1],
+        slouching: percentages[2],
+        hunching: percentages[3],
+      };
+      res.send(dict);
+    });
     conn.release();
   });
 });

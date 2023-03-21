@@ -27,17 +27,19 @@ function DateFormatter(unix_timestamp: number) {
   return formattedTime;
 }
 
-function Graph() {
+function Graph(timeframe: { timeframe: string }) {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3000/score/moving_average')
+    fetch(
+      `http://localhost:3000/score/moving_average?timeframe=${timeframe.timeframe}`
+    )
       .then((response) => response.json())
       .then((res_data) => {
         setData(res_data);
         return 1;
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, [timeframe]);
 
   return (
     <ResponsiveContainer width="100%" height="70%">

@@ -4,12 +4,12 @@ import crossedLegsIcon from '../../../assets/crossedlegsIcon.png';
 import hunchingIcon from '../../../assets/hunchingoverIcon.png';
 import slouchingIcon from '../../../assets/slouchingIcon.png';
 
-export default function Visualisations() {
+export default function Visualisations(timeframe: { timeframe: string }) {
   const [hunchingPer, setHunchingPer] = useState(0);
   const [slouchingPer, setSlouchingPer] = useState(0);
   const [crossedPer, setCrossedPer] = useState(0);
   useEffect(() => {
-    fetch('http://localhost:3000/score/split')
+    fetch(`http://localhost:3000/score/split?timeframe=${timeframe.timeframe}`)
       .then((response) => response.json())
       .then((res_data) => {
         setHunchingPer(Math.round(res_data.hunching * 100));
@@ -18,7 +18,7 @@ export default function Visualisations() {
         return 1;
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, [timeframe]);
 
   let barColorH: string;
   let barColorS: string;
