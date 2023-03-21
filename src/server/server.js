@@ -30,9 +30,10 @@ app.get('/score/moving_average', (req, res) => {
       'YYYY-MM-DD'
     )}' ORDER BY timestamp DESC;`;
     window = 120;
-  } else if (timeframe === '30min') {
+  } else if (timeframe.endsWith('min')) {
+    const minutes = parseInt(timeframe.split('min')[0], 10);
     query += ` WHERE \`timestamp\` > '${moment()
-      .subtract(30, 'minutes')
+      .subtract(minutes, 'minutes')
       .format('YYYY-MM-DD HH:mm:ss')}' ORDER BY timestamp DESC;`;
   } else {
     throw Error('Invalid Timeframe');
@@ -74,9 +75,10 @@ app.get('/score/percentage', (req, res) => {
     query += ` WHERE \`timestamp\` > '${moment().format(
       'YYYY-MM-DD'
     )}' ORDER BY timestamp DESC;`;
-  } else if (timeframe === '30min') {
+  } else if (timeframe.endsWith('min')) {
+    const minutes = parseInt(timeframe.split('min')[0], 10);
     query += ` WHERE \`timestamp\` > '${moment()
-      .subtract(30, 'minutes')
+      .subtract(minutes, 'minutes')
       .format('YYYY-MM-DD HH:mm:ss')}' ORDER BY timestamp DESC;`;
   } else {
     throw Error('Invalid Timeframe');
@@ -89,7 +91,7 @@ app.get('/score/percentage', (req, res) => {
       // Getting the 'response' from the database and sending it to our route. This is were the data is.
       const scores = results.map((entry) => entry.score);
       const sum = scores.reduce((a, b) => a + b, 0);
-      const percentageGood = sum / scores.length;
+      const percentageGood = sum / scores.length || 1;
       res.send({ good: percentageGood, bad: 1 - percentageGood });
     });
     conn.release();
@@ -106,9 +108,10 @@ app.get('/score/split', (req, res) => {
     query += ` WHERE \`timestamp\` > '${moment().format(
       'YYYY-MM-DD'
     )}' ORDER BY timestamp DESC;`;
-  } else if (timeframe === '30min') {
+  } else if (timeframe.endsWith('min')) {
+    const minutes = parseInt(timeframe.split('min')[0], 10);
     query += ` WHERE \`timestamp\` > '${moment()
-      .subtract(30, 'minutes')
+      .subtract(minutes, 'minutes')
       .format('YYYY-MM-DD HH:mm:ss')}' ORDER BY timestamp DESC;`;
   } else {
     throw Error('Invalid Timeframe');
