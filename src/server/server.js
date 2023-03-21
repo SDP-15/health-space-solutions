@@ -24,10 +24,12 @@ app.get('/score/moving_average', (req, res) => {
   console.log('Request received on GET /score/moving_average');
   const { timeframe } = req.query;
   let query = 'SELECT * FROM score';
+  let window = 30;
   if (timeframe === 'today') {
     query += ` WHERE \`timestamp\` > '${moment().format(
       'YYYY-MM-DD'
     )}' ORDER BY timestamp DESC;`;
+    window = 120;
   } else if (timeframe === '30min') {
     query += ` WHERE \`timestamp\` > '${moment()
       .subtract(30, 'minutes')
@@ -42,7 +44,6 @@ app.get('/score/moving_average', (req, res) => {
       if (error) throw error;
       // Getting the 'response' from the database and sending it to our route. This is were the data is.
       const dataTuples = results.reverse();
-      const window = 30;
       const movingAverage = [];
       for (let i = 0; i < dataTuples.length - window + 1; i += 1) {
         const data = dataTuples
