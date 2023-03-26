@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import {
   LineChart,
   XAxis,
@@ -7,6 +7,8 @@ import {
   Line,
   Label,
   ResponsiveContainer,
+  Tooltip,
+  TooltipProps
 } from 'recharts';
 import './style.css';
 
@@ -22,6 +24,28 @@ function Graph() {
     { name: '16:00', score: 50 },
     { name: '17:00', score: 43 },
   ];
+  const [active, setActive] = useState<boolean>(false);
+  const [payload, setPayload] = useState<boolean>(false);
+  const [label, setLabel] = useState<boolean>(false);
+
+  interface CustomTooltipProps extends TooltipProps {
+    active?: boolean;
+    payload?: { value: string }[];
+    label?: string;
+  }
+
+  const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
+    if (active) {
+      return (
+        <div className="custom-tooltip" >
+          <p>{`Time: ${label}`}</p>
+          <p>{`Posture Score: ${payload[0].value}`}</p>
+          <p>{`Your posture score measures how well you maintain good posture throughout the day. A higher score means better posture.`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <ResponsiveContainer width="100%" height="70%">
@@ -47,6 +71,7 @@ function Graph() {
           />
         </YAxis>
         <Line type="monotone" dataKey="score" stroke="#fff" yAxisId={0} />
+        <Tooltip content={<CustomTooltip />} />
       </LineChart>
     </ResponsiveContainer>
   );
