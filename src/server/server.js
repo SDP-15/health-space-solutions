@@ -55,7 +55,7 @@ app.get('/eye/bars', (req, res) => {
 
               // Only restart if it has been at least 5 minutes?
               if (diff > 5) {
-                bars.append(diff);
+                bars.append({ duration: diff });
                 lookingStart = dataTuples[i].timestamp;
               }
             }

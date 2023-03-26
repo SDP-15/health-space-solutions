@@ -1,10 +1,11 @@
+import BarChartEyeAssist from 'components/BarChartEyeAssist';
 import Footer from '../Footer';
 import './style.css';
 
 function EyeTrackingPage() {
   return (
     <div>
-      <div className="eye-tracking-page">
+      {/* <div className="eye-tracking-page">
         <div>
           <h1>
             <b>EyeAssist</b>
@@ -189,7 +190,8 @@ function EyeTrackingPage() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
+      <BarChartEyeAssist />
       <Footer />
     </div>
   );
