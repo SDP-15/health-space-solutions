@@ -18,6 +18,59 @@ const connection = mysql.createPool({
 const app = express();
 app.use(cors());
 
+// Eye assist
+app.get('/eye/bars', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /eye/bars');
+  const query = `SELECT * FROM eye WHERE \`timestamp\` > '${moment().format(
+    'YYYY-MM-DD'
+  )}' ORDER BY timestamp DESC;`;
+  const lookAwaySeconds = 20;
+
+  connection.getConnection((err, conn) => {
+    conn.query(query, (error, results) => {
+      if (error) throw error;
+      // Getting the 'response' from the database and sending it to our route. This is were the data is.
+      const dataTuples = results.reverse();
+      const bars = [];
+      let looking = true;
+      let lookingStart = '';
+      let notLookingStart = '';
+      for (let i = 0; i < dataTuples.length; i += 1) {
+        if (dataTuples[i].score === '0') {
+          if (lookingStart === '') {
+            lookingStart = dataTuples[i].timestamp;
+          }
+          if (!looking) {
+            looking = true;
+            // Calculate how long we were looking for
+            const fromNot = new Date(notLookingStart);
+            const toNot = new Date(dataTuples[i].timestamp);
+            const diffNot = (toNot - fromNot) / 1000;
+            if (diffNot >= lookAwaySeconds) {
+              // Calculate how long we were looking for
+              const from = new Date(lookingStart);
+              const to = new Date(dataTuples[i].timestamp);
+              const diff = (to - from) / 1000 / 60; // in mins
+
+              // Only restart if it has been at least 5 minutes?
+              if (diff > 5) {
+                bars.append(diff);
+                lookingStart = dataTuples[i].timestamp;
+              }
+            }
+          }
+        } else if (looking) {
+          looking = false;
+          notLookingStart = dataTuples[i].timestamp;
+        }
+      }
+      res.send(bars);
+    });
+    conn.release();
+  });
+});
+
 // Get the moving average of the day
 app.get('/score/moving_average', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
