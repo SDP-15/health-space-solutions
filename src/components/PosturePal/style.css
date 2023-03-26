@@ -6,6 +6,8 @@
   height: 100%;
   width:100%;
   max-height: calc(100% - 80px);  /*subtract the height of the footer */
+  min-height: 400px;
+  min-width: 500px;
   overflow: auto;
 }
 .pictures {
