@@ -12,6 +12,8 @@ module.exports = {
     'no-unused-vars': 'warn',
     'no-undef': 'warn',
     'import/no-import-module-exports': 'off',
+    'react/destructuring-assignment': 'warn',
+    'no-nested-ternary': 'warn',
   },
   parserOptions: {
     ecmaVersion: 2020,

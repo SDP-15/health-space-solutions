@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const moment = require('moment');
 
 // create application/json parser
 const jsonParser = bodyParser.json();
@@ -16,6 +17,139 @@ const connection = mysql.createPool({
 // Starting our app.
 const app = express();
 app.use(cors());
+
+// Get the moving average of the day
+app.get('/score/moving_average', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /score/moving_average');
+  const { timeframe } = req.query;
+  let query = 'SELECT * FROM score';
+  let window = 30;
+  if (timeframe === 'today') {
+    query += ` WHERE \`timestamp\` > '${moment().format(
+      'YYYY-MM-DD'
+    )}' ORDER BY timestamp DESC;`;
+    window = 120;
+  } else if (timeframe.endsWith('min')) {
+    const minutes = parseInt(timeframe.split('min')[0], 10);
+    query += ` WHERE \`timestamp\` > '${moment()
+      .subtract(minutes, 'minutes')
+      .format('YYYY-MM-DD HH:mm:ss')}' ORDER BY timestamp DESC;`;
+  } else {
+    throw Error('Invalid Timeframe');
+  }
+  console.log(query);
+
+  connection.getConnection((err, conn) => {
+    conn.query(query, (error, results) => {
+      if (error) throw error;
+      // Getting the 'response' from the database and sending it to our route. This is were the data is.
+      const dataTuples = results.reverse();
+      const movingAverage = [];
+      for (let i = 0; i < dataTuples.length - window + 1; i += 1) {
+        const data = dataTuples
+          .slice(i, i + window)
+          .map((entry) => entry.score);
+        const sum = data.reduce((a, b) => a + b, 0);
+        const avg = sum / data.length || 0;
+        movingAverage.push({
+          score: avg * 100,
+          timestamp: Math.floor(
+            new Date(dataTuples[i + window - 1].timestamp).getTime() / 1000
+          ),
+        }); // In percent
+      }
+      res.send(movingAverage);
+    });
+    conn.release();
+  });
+});
+
+// Get the good/bad percentage
+app.get('/score/percentage', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /score/percentage');
+  const { timeframe } = req.query;
+  let query = 'SELECT * FROM score';
+  if (timeframe === 'today') {
+    query += ` WHERE \`timestamp\` > '${moment().format(
+      'YYYY-MM-DD'
+    )}' ORDER BY timestamp DESC;`;
+  } else if (timeframe.endsWith('min')) {
+    const minutes = parseInt(timeframe.split('min')[0], 10);
+    query += ` WHERE \`timestamp\` > '${moment()
+      .subtract(minutes, 'minutes')
+      .format('YYYY-MM-DD HH:mm:ss')}' ORDER BY timestamp DESC;`;
+  } else {
+    throw Error('Invalid Timeframe');
+  }
+  console.log(query);
+
+  connection.getConnection((err, conn) => {
+    conn.query(query, (error, results) => {
+      if (error) throw error;
+      // Getting the 'response' from the database and sending it to our route. This is were the data is.
+      const scores = results.map((entry) => entry.score);
+      const sum = scores.reduce((a, b) => a + b, 0);
+      const percentageGood = sum / scores.length || 1;
+      res.send({ good: percentageGood, bad: 1 - percentageGood });
+    });
+    conn.release();
+  });
+});
+
+// Get the moving average of the day
+app.get('/score/split', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  console.log('Request received on GET /score/split');
+  const { timeframe } = req.query;
+  let query = 'SELECT * FROM score';
+  if (timeframe === 'today') {
+    query += ` WHERE \`timestamp\` > '${moment().format(
+      'YYYY-MM-DD'
+    )}' ORDER BY timestamp DESC;`;
+  } else if (timeframe.endsWith('min')) {
+    const minutes = parseInt(timeframe.split('min')[0], 10);
+    query += ` WHERE \`timestamp\` > '${moment()
+      .subtract(minutes, 'minutes')
+      .format('YYYY-MM-DD HH:mm:ss')}' ORDER BY timestamp DESC;`;
+  } else {
+    throw Error('Invalid Timeframe');
+  }
+  console.log(query);
+
+  connection.getConnection((err, conn) => {
+    conn.query(query, (error, results) => {
+      if (error) throw error;
+
+      // Getting the 'response' from the database and sending it to our route. This is were the data is.
+      const reasons = results.map((entry) => entry.reason);
+      const counts = [0, 0, 0, 0];
+      for (let i = 0; i < reasons.length; i += 1) {
+        const reason = reasons[i];
+        if (reason < 1) {
+          counts[0] += 1; // Good posture
+        } else if (reason === 1 || reason === 2) {
+          counts[1] += 1; // Crossing legs
+        } else if (reason === 3) {
+          counts[2] += 1; // Slouching
+        } else if (reason === 4) {
+          counts[3] += 1; // Hunching
+        }
+      }
+      const sum = counts.reduce((a, b) => a + b, 0);
+      const percentages = counts.map((value) => value / sum);
+      const dict = {
+        good: percentages[0],
+        crossing_legs: percentages[1],
+        slouching: percentages[2],
+        hunching: percentages[3],
+      };
+      res.send(dict);
+    });
+    conn.release();
+  });
+});
 
 // Creating a GET route that returns data from the 'users' table.
 app.get('/users', (req, res) => {

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Footer from 'components/Footer';
 import { useState } from 'react';
+import settingsVar from 'settingsVar';
 
 import icon from '../../../assets/healthspace4.png';
 import './style.css';
@@ -12,8 +13,10 @@ export default function SettingsPage() {
     AsyncStorage.removeItem('loggedIn');
     navigate('/');
   };
-  const [doNotDisturb, setDoNotDisturb] = useState('');
-  const [notifications, setNotifications] = useState('');
+  const [doNotDisturb, setDoNotDisturb] = useState(settingsVar.doNotDisturb);
+  const [notifications, setNotifications] = useState(
+    settingsVar.notifyAfterMins
+  );
 
   const handleDoNotDisturbChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -29,10 +32,18 @@ export default function SettingsPage() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    settingsVar.doNotDisturb = doNotDisturb;
+    settingsVar.notifyAfterMins = notifications;
     console.log(`Selected options: ${doNotDisturb}, ${notifications}`);
+    const doString =
+      doNotDisturb === -1
+        ? 'Until Turned Off'
+        : doNotDisturb === 0
+        ? 'Off'
+        : `${doNotDisturb} Minutes`;
     alert(`Changes Have Been Applied.
-     Do Not Disturb: ${doNotDisturb}
-     Notifications: ${notifications}`);
+     Do Not Disturb: ${doString}
+     Notify After: ${notifications} Minutes`);
   };
 
   return (
@@ -50,10 +61,10 @@ export default function SettingsPage() {
             onChange={handleDoNotDisturbChange}
             className="form_input"
           >
-            <option value="off">Off</option>
-            <option value="1hr">1 Hour</option>
-            <option value="2hr">2 Hour</option>
-            <option value="untilOff">Until Turned Off</option>
+            <option value={0}>Off</option>
+            <option value={60}>1 Hour</option>
+            <option value={120}>2 Hour</option>
+            <option value={-1}>Until Turned Off</option>
           </select>
         </div>
         <div className="form-row">
@@ -64,10 +75,11 @@ export default function SettingsPage() {
             onChange={handleNotificatChange}
             className="form_input"
           >
-            <option value="5mins">5 minutes</option>
-            <option value="10mins">10 minutes</option>
-            <option value="20mins">20 minutes</option>
-            <option value="30mins">30 minutes</option>
+            <option value={1}>1 minute</option>
+            <option value={5}>5 minutes</option>
+            <option value={10}>10 minutes</option>
+            <option value={20}>20 minutes</option>
+            <option value={30}>30 minutes</option>
           </select>
         </div>
         <button type="submit" className="button-class">
