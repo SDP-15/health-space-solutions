@@ -1,6 +1,7 @@
 import BarChartEyeAssist from 'components/BarChartEyeAssist';
 import Footer from '../Footer';
 import './style.css';
+import eyeLogo from '../../../assets/eyeAssist.png';
 
 function EyeTrackingPage() {
   return (
