@@ -15,7 +15,7 @@ export default function PosturePalPage() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:3000/score/percentage?timeframe=${settingsVar.notifyAfterMins}min`
+      `http://localhost:3000/score/percentage?timeframe=${settingsVar.notifyAfterMinsPosture}min`
     )
       .then((response) => response.json())
       .then((res_data) => {
@@ -30,7 +30,7 @@ export default function PosturePalPage() {
 
     const interval = setInterval(
       () => setTime(Date.now()),
-      settingsVar.notifyAfterMins * 60000
+      settingsVar.notifyAfterMinsPosture * 60000
     );
     return () => {
       clearInterval(interval);
