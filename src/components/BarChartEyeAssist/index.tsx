@@ -37,7 +37,7 @@ export default function BarChartEyeAssist() {
 
   return (
     <div>
-      <h1 className="eyeGraphH"> Time Speant Looking Directly at Screen</h1>
+      <h1 className="eyeGraphH"> Time Spent Looking Directly at Screen</h1>
       <BarChart width={730} height={250} data={bars}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis label=" Time Period" />
