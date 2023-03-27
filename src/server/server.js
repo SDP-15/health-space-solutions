@@ -52,7 +52,7 @@ app.get('/eye/bars', (req, res) => {
 
             // Only restart if it has been at least 5 minutes?
             if (diff > 5) {
-              bars.push({ duration: diff });
+              bars.push({ duration: Math.round(diff) });
             }
           }
 
@@ -78,7 +78,7 @@ app.get('/eye/bars', (req, res) => {
 
               // Only restart if it has been at least 5 minutes?
               if (diff > 5) {
-                bars.push({ duration: diff });
+                bars.push({ duration: Math.round(diff) });
                 // console.log(lookingStart);
                 lookingStart = dataTuples[i].timestamp;
                 // console.log(lookingStart);
