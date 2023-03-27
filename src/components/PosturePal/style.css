@@ -6,7 +6,7 @@
   height: 100%;
   width: 100%;
   max-height: calc(100% - 80px); /*subtract the height of the footer */
-  overflow:auto;
+  overflow: auto;
 }
 .pictures {
   margin-left: 10%;
@@ -34,10 +34,10 @@
 
 .tooltip {
   position: absolute;
-  top:40%;
-  right:0%;
-  width:40%;
-  margin:10%;
+  top: 40%;
+  right: 0%;
+  width: 40%;
+  margin: 10%;
   margin-bottom: 40%;
   background-color: rgba(0, 0, 0, 0.342);
   color: white;
@@ -46,7 +46,6 @@
   border-radius: 5px;
   z-index: 1;
 }
-
 
 .footer {
   align-self: flex-end;
@@ -73,7 +72,7 @@
 }
 
 .form_input {
-  margin-top:10px;
+  margin-top: 10px;
   text-align: center;
   color: white;
   padding: 10px;

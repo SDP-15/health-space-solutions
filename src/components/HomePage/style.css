@@ -13,42 +13,41 @@
 .logo-e {
   width: 17%;
   height: auto;
-  float:right;
+  float: right;
 }
 
 .para {
   margin: 25px;
-  float:center;
-  font-size: 1.5vw ;
+  float: center;
+  font-size: 1.5vw;
 }
 
 .para-p {
-  margin-left:3%;
-  margin-top:6%;
-  font-size: 1.5vw ;
+  margin-left: 3%;
+  margin-top: 6%;
+  font-size: 1.5vw;
 }
 
 .para-e {
-  margin-top:6%;
-  margin-right:3%;
-  font-size: 1.5vw ;
+  margin-top: 6%;
+  margin-right: 3%;
+  font-size: 1.5vw;
 }
 
-
-.section{
+.section {
   width: 85%;
   float: center;
-  margin-left:7.5%;
-  margin-right:7.5%;
+  margin-left: 7.5%;
+  margin-right: 7.5%;
   clear: both;
 }
 
 .para-i {
   margin: 25px;
-  text-align:center;
-  font-size: 1.5vw ;
-  margin-left:7.5%;
-  margin-right:7.5%;
+  text-align: center;
+  font-size: 1.5vw;
+  margin-left: 7.5%;
+  margin-right: 7.5%;
 }
 
 .heading {
@@ -61,5 +60,5 @@
   width: 100%;
   max-height: calc(100% - 80px);
   overflow: auto;
-  font-family: Calibri,'Gill Sans', 'Gill Sans MT',  'Trebuchet MS', sans-serif;
+  font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
 }
