@@ -1,7 +1,6 @@
 import BarChartEyeAssist from 'components/BarChartEyeAssist';
 import Footer from '../Footer';
 import './style.css';
-import eyeLogo from '../../../assets/eyeAssist.png';
 
 function EyeTrackingPage() {
   return (
@@ -192,10 +191,7 @@ function EyeTrackingPage() {
           </div>
         </div>
       </div> */}
-      <img src={eyeLogo} className="eyeAssist" alt="eyeAssist" />
-      <div className="eyeGraph">
-        <BarChartEyeAssist />
-      </div>
+      <BarChartEyeAssist />
       <Footer />
     </div>
   );
