@@ -10,3 +10,16 @@
 .eye-tracking-page a {
   color: blue;
 }
+
+.eyeAssist{
+  width:20%;
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+.eyeGraph{
+  float:right;
+  width:60%;
+  margin-top: 5%;
+  margin-right: 5%;
+}

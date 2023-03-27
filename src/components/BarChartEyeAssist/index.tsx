@@ -7,6 +7,7 @@ import {
   Bar,
   ReferenceLine,
   Label,
+  ResponsiveContainer,
 } from 'recharts';
 import './style.css';
 import { useEffect, useState } from 'react';
@@ -36,15 +37,17 @@ export default function BarChartEyeAssist() {
   }, [time]);
 
   return (
-    <BarChart width={730} height={250} data={bars}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis label="Period" />
-      <YAxis>
-        <Label angle={270} offset={-10} value="Minutes" />
-      </YAxis>
-      <Tooltip />
-      <Bar dataKey="duration" fill="#8884d8" />
-      <ReferenceLine y={20} stroke="red" strokeDasharray="3 3" />
-    </BarChart>
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={bars}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis label="Period" />
+        <YAxis>
+          <Label angle={270} offset={-10} value="Minutes" />
+        </YAxis>
+        <Tooltip />
+        <Bar dataKey="duration" fill="#8884d8" />
+        <ReferenceLine y={20} stroke="red" strokeDasharray="3 3" />
+      </BarChart>
+    </ResponsiveContainer>
   );
 }
