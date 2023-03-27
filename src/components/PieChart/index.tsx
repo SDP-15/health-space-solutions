@@ -1,4 +1,12 @@
-import { PieChart, Pie, Legend, Label, ResponsiveContainer } from 'recharts';
+import {
+  PieChart,
+  Pie,
+  Legend,
+  Label,
+  ResponsiveContainer,
+  TooltipProps,
+  Tooltip,
+} from 'recharts';
 import './style.css';
 import { useEffect, useState } from 'react';
 
@@ -29,6 +37,27 @@ export default function Piechart(timeframe: { timeframe: string }) {
     { name: 'Good', time: goodPer, fill: 'lightgreen' },
     { name: 'Poor', time: badPer, fill: '#DC143C' },
   ];
+
+  interface CustomTooltipProps extends TooltipProps {
+    active?: boolean;
+    payload?: { value: string; name: string }[];
+    label?: string;
+  }
+
+  const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
+    if (active && payload) {
+      const explanation = payload[0].name === 'Good';
+      return (
+        <div className="custom-tooltip">
+          <p>{`${payload[0].name} Posture: `}</p>
+          <p>{`${payload[0].value}%`}</p>
+          <p>{explanation}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="pie-chart">
       <ResponsiveContainer width="100%" height="100%">
@@ -46,6 +75,7 @@ export default function Piechart(timeframe: { timeframe: string }) {
             />
           </Pie>
           <Legend verticalAlign="bottom" height={36} iconType="circle" />
+          <Tooltip content={<CustomTooltip />} />
         </PieChart>
       </ResponsiveContainer>
     </div>
