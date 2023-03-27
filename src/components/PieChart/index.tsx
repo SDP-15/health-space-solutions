@@ -50,7 +50,7 @@ export default function Piechart(timeframe: { timeframe: string }) {
       return (
         <div className="custom-tooltip">
           <p>{`${payload[0].name} Posture: `}</p>
-          <p>{`${payload[0].value}%`}</p>
+          <p>{`${payload[0].value * 100}%`}</p>
           <p>{explanation}</p>
         </div>
       );
