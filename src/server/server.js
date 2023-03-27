@@ -37,7 +37,7 @@ app.get('/eye/bars', (req, res) => {
       let looking = true;
       let lookingStart = '';
       let notLookingStart = '';
-      let previousTime = dataTuples[0].timestamp || '';
+      let previousTime = dataTuples[0] ? dataTuples[0].timestamp : '';
       for (let i = 0; i < dataTuples.length; i += 1) {
         // If there is a gap between the data, end previous timeframe and start new one.
         const prev = new Date(previousTime);
