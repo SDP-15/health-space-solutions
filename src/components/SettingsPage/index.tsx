@@ -13,37 +13,75 @@ export default function SettingsPage() {
     AsyncStorage.removeItem('loggedIn');
     navigate('/');
   };
-  const [doNotDisturb, setDoNotDisturb] = useState(settingsVar.doNotDisturb);
-  const [notifications, setNotifications] = useState(
-    settingsVar.notifyAfterMins
+  const [doNotDisturbPosture, setDoNotDisturbPosture] = useState(
+    settingsVar.doNotDisturbPosture
+  );
+  const [notificationsPosture, setNotificationsPosture] = useState(
+    settingsVar.notifyAfterMinsPosture
+  );
+  const [doNotDisturbEye, setDoNotDisturbEye] = useState(
+    settingsVar.doNotDisturbEye
+  );
+  const [notificationsEye, setNotificationsEye] = useState(
+    settingsVar.notifyAfterMinsEye
   );
 
-  const handleDoNotDisturbChange = (
+  const handleDoNotDisturbPostureChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setDoNotDisturb(event.target.value);
+    setDoNotDisturbPosture(event.target.value);
   };
 
-  const handleNotificatChange = (
+  const handleNotificatPostureChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setNotifications(event.target.value);
+    setNotificationsPosture(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleDoNotDisturbEyeChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setDoNotDisturbEye(event.target.value);
+  };
+
+  const handleNotificatEyeChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setNotificationsEye(event.target.value);
+  };
+
+  const handleSubmitPosture = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    settingsVar.doNotDisturb = doNotDisturb;
-    settingsVar.notifyAfterMins = notifications;
-    console.log(`Selected options: ${doNotDisturb}, ${notifications}`);
-    const doString =
-      doNotDisturb === -1
+    settingsVar.doNotDisturbPosture = doNotDisturbPosture;
+    settingsVar.notifyAfterMinsPosture = notificationsPosture;
+    console.log(
+      `Selected options: ${doNotDisturbPosture}, ${notificationsPosture}`
+    );
+    const doStringPosture =
+      doNotDisturbPosture === -1
         ? 'Until Turned Off'
-        : doNotDisturb === 0
+        : doNotDisturbPosture === 0
         ? 'Off'
-        : `${doNotDisturb} Minutes`;
+        : `${doNotDisturbPosture} Minutes`;
     alert(`Changes Have Been Applied.
-     Do Not Disturb: ${doString}
-     Notify After: ${notifications} Minutes`);
+     Do Not Disturb: ${doStringPosture}
+     Notify After: ${notificationsPosture} Minutes`);
+  };
+
+  const handleSubmitEye = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    settingsVar.doNotDisturbEye = doNotDisturbEye;
+    settingsVar.notifyAfterMinsEye = notificationsEye;
+    console.log(`Selected options: ${doNotDisturbEye}, ${notificationsEye}`);
+    const doStringEye =
+      doNotDisturbEye === -1
+        ? 'Until Turned Off'
+        : doNotDisturbEye === 0
+        ? 'Off'
+        : `${doNotDisturbEye} Minutes`;
+    alert(`Changes Have Been Applied.
+     Do Not Disturb: ${doStringEye}
+     Notify After: ${notificationsEye} Minutes`);
   };
 
   return (
@@ -52,41 +90,87 @@ export default function SettingsPage() {
       <div className="header-set row col-12 d-flex justify-content-center">
         Settings
       </div>
-      <form onSubmit={handleSubmit} className="form-container">
-        <div className="form-row">
-          <label htmlFor="disturb">Do Not Disturb:</label>
-          <select
-            id="disturb"
-            value={doNotDisturb}
-            onChange={handleDoNotDisturbChange}
-            className="form_input"
-          >
-            <option value={0}>Off</option>
-            <option value={60}>1 Hour</option>
-            <option value={120}>2 Hour</option>
-            <option value={-1}>Until Turned Off</option>
-          </select>
+      <div className="settings-container d-flex">
+        <div className="Posture" style={{ flexBasis: '50%' }}>
+          <h1>PosturePal</h1>
+          <form onSubmit={handleSubmitPosture} className="form-container">
+            <div className="form-row">
+              <label htmlFor="disturb">Do Not Disturb:</label>
+              <select
+                id="disturb"
+                value={doNotDisturbPosture}
+                onChange={handleDoNotDisturbPostureChange}
+                className="form_input"
+              >
+                <option value={0}>Off</option>
+                <option value={60}>1 Hour</option>
+                <option value={120}>2 Hour</option>
+                <option value={-1}>Until Turned Off</option>
+              </select>
+            </div>
+            <div className="form-row">
+              <label htmlFor="notification">
+                Notify About Bad Posture After:
+              </label>
+              <select
+                id="notification"
+                value={notificationsPosture}
+                onChange={handleNotificatPostureChange}
+                className="form_input"
+              >
+                <option value={1}>1 minute</option>
+                <option value={5}>5 minutes</option>
+                <option value={10}>10 minutes</option>
+                <option value={20}>20 minutes</option>
+                <option value={30}>30 minutes</option>
+              </select>
+            </div>
+            <button type="submit" className="button-class">
+              Apply Changes
+            </button>
+          </form>
         </div>
-        <div className="form-row">
-          <label htmlFor="notification">Notify About Bad Posture After:</label>
-          <select
-            id="notification"
-            value={notifications}
-            onChange={handleNotificatChange}
-            className="form_input"
-          >
-            <option value={1}>1 minute</option>
-            <option value={5}>5 minutes</option>
-            <option value={10}>10 minutes</option>
-            <option value={20}>20 minutes</option>
-            <option value={30}>30 minutes</option>
-          </select>
+        <div className="Eye" style={{ flexBasis: '50%' }}>
+          <h1>EyeAssist</h1>
+          <form onSubmit={handleSubmitEye} className="form-container">
+            <div className="form-row">
+              <label htmlFor="disturb">Do Not Disturb:</label>
+              <select
+                id="disturb"
+                value={doNotDisturbEye}
+                onChange={handleDoNotDisturbEyeChange}
+                className="form_input"
+              >
+                <option value={0}>Off</option>
+                <option value={60}>1 Hour</option>
+                <option value={120}>2 Hour</option>
+                <option value={-1}>Until Turned Off</option>
+              </select>
+            </div>
+            <div className="form-row">
+              <label htmlFor="notification">
+                Notify to Look away after Screentime:
+              </label>
+              <select
+                id="notification"
+                value={notificationsEye}
+                onChange={handleNotificatEyeChange}
+                className="form_input"
+              >
+                <option value={5}>5 minutes</option>
+                <option value={10}>10 minutes</option>
+                <option value={20}>20 minutes</option>
+                <option value={30}>30 minutes</option>
+                <option value={60}>1 hour</option>
+              </select>
+            </div>
+            <button type="submit" className="button-class">
+              Apply Changes
+            </button>
+          </form>
         </div>
-        <button type="submit" className="button-class">
-          Apply Changes
-        </button>
-      </form>
-      <form className="form-container">
+      </div>
+      <form className="form-container-log">
         <button
           form="logout_form"
           onClick={() => forgetUser()}

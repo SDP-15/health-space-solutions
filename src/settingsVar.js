@@ -1,4 +1,6 @@
 export default {
-  doNotDisturb: 0,
-  notifyAfterMins: 1,
+  doNotDisturbPosture: 0,
+  notifyAfterMinsPosture: 1,
+  doNotDisturbEye: 0,
+  notifyAfterMinsEye: 1,
 };
