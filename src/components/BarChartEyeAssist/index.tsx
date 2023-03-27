@@ -36,15 +36,18 @@ export default function BarChartEyeAssist() {
   }, [time]);
 
   return (
-    <BarChart width={730} height={250} data={bars}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis label="Period" />
-      <YAxis>
-        <Label angle={270} offset={-10} value="Minutes" />
-      </YAxis>
-      <Tooltip />
-      <Bar dataKey="duration" fill="#8884d8" />
-      <ReferenceLine y={20} stroke="red" strokeDasharray="3 3" />
-    </BarChart>
+    <div>
+      <h1 className="eyeGraphH"> Time Speant Looking Directly at Screen</h1>
+      <BarChart width={730} height={250} data={bars}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis label=" Time Period" />
+        <YAxis>
+          <Label angle={270} offset={-10} value="Minutes" />
+        </YAxis>
+        <Tooltip />
+        <Bar dataKey="duration" fill="#8884d8" />
+        <ReferenceLine y={20} stroke="red" strokeDasharray="3 3" />
+      </BarChart>
+    </div>
   );
 }

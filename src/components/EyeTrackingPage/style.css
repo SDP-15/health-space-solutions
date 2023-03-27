@@ -1,12 +1,52 @@
 .eye-tracking-page {
-  background-color: #1b1919;
-  color: white;
-  text-align: left;
-  padding: 100px 50px 50px 100px;
-  overflow-y: auto;
-  max-height: calc(100vh - 200px);
+  font-family: Calibri, 'Gill Sans', 'Gill Sans MT',  'Trebuchet MS', sans-serif;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  max-height: calc(100% - 80px); /*subtract the height of the footer */
 }
 
-.eye-tracking-page a {
-  color: blue;
+
+.logoDiv{
+  width:70%;
+  align-items:center;
+  margin-left:15%;
+  margin-top:2%;
+  margin-bottom: 0%;
+  font-size: 1.2vw;
+  position: absolute;
+  padding-bottom: 0%;
+  display: block;
+  justify-content: center;
+}
+
+.eyeAssist{
+  width:15%;
+  float: left;
+}
+.par{
+  margin-left:10%;
+  margin-top:6%;
+  font-size: 1.3vw ;}
+
+.eyeGraph{
+  width:100%;
+  align-items: center;
+  margin-top:10%;
+  padding-top: 3%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 0;
+  top: 10%; /* adjust the top margin to leave space for the header */
+  height: 60%; /* adjust the height to fit the remaining space on the page */
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  margin-left: 20px;
 }
