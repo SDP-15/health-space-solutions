@@ -9,10 +9,7 @@ import {
   Label,
 } from 'recharts';
 import './style.css';
-import {
-  // useEffect,
-  useState,
-} from 'react';
+import { useEffect, useState } from 'react';
 
 export default function BarChartEyeAssist() {
   const [time, setTime] = useState(Date.now());
@@ -23,20 +20,20 @@ export default function BarChartEyeAssist() {
     { duration: 35 },
   ]);
 
-  //   useEffect(() => {
-  //     fetch(`http://localhost:3000/eye/bars`)
-  //       .then((response) => response.json())
-  //       .then((res_data) => {
-  //         setBars(res_data);
-  //         return 1;
-  //       })
-  //       .catch((err) => console.warn(err));
+  useEffect(() => {
+    fetch(`http://localhost:3000/eye/bars`)
+      .then((response) => response.json())
+      .then((res_data) => {
+        setBars(res_data);
+        return 1;
+      })
+      .catch((err) => console.warn(err));
 
-  //     const interval = setInterval(() => setTime(Date.now()), 60000);
-  //     return () => {
-  //       clearInterval(interval);
-  //     };
-  //   }, [time]);
+    const interval = setInterval(() => setTime(Date.now()), 60000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [time]);
 
   return (
     <BarChart width={730} height={250} data={bars}>

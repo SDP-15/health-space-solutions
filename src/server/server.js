@@ -22,10 +22,11 @@ app.use(cors());
 app.get('/eye/bars', (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   console.log('Request received on GET /eye/bars');
-  const query = `SELECT * FROM eye WHERE \`timestamp\` > '${moment().format(
+  const query = `SELECT * FROM eyetracker WHERE \`timestamp\` > '${moment().format(
     'YYYY-MM-DD'
   )}' ORDER BY timestamp DESC;`;
   const lookAwaySeconds = 20;
+  console.log(query);
 
   connection.getConnection((err, conn) => {
     conn.query(query, (error, results) => {
@@ -36,8 +37,30 @@ app.get('/eye/bars', (req, res) => {
       let looking = true;
       let lookingStart = '';
       let notLookingStart = '';
+      let previousTime = dataTuples[0].timestamp || '';
       for (let i = 0; i < dataTuples.length; i += 1) {
-        if (dataTuples[i].score === '0') {
+        // If there is a gap between the data, end previous timeframe and start new one.
+        const prev = new Date(previousTime);
+        const now = new Date(dataTuples[i].timestamp);
+        const diffData = (now - prev) / 1000;
+        if (diffData > 30) {
+          if (looking) {
+            // Calculate how long we were looking for
+            const from = new Date(lookingStart);
+            const to = new Date(dataTuples[i - 1].timestamp);
+            const diff = (to - from) / 1000 / 60; // in mins
+
+            // Only restart if it has been at least 5 minutes?
+            if (diff > 1) {
+              bars.push({ duration: diff });
+            }
+          }
+
+          lookingStart = '';
+        }
+
+        previousTime = dataTuples[i].timestamp;
+        if (dataTuples[i].score === 0) {
           if (lookingStart === '') {
             lookingStart = dataTuples[i].timestamp;
           }
@@ -45,18 +68,20 @@ app.get('/eye/bars', (req, res) => {
             looking = true;
             // Calculate how long we were looking for
             const fromNot = new Date(notLookingStart);
-            const toNot = new Date(dataTuples[i].timestamp);
+            const toNot = new Date(dataTuples[i - 1].timestamp);
             const diffNot = (toNot - fromNot) / 1000;
             if (diffNot >= lookAwaySeconds) {
               // Calculate how long we were looking for
               const from = new Date(lookingStart);
-              const to = new Date(dataTuples[i].timestamp);
+              const to = new Date(notLookingStart);
               const diff = (to - from) / 1000 / 60; // in mins
 
               // Only restart if it has been at least 5 minutes?
-              if (diff > 5) {
-                bars.append({ duration: diff });
+              if (diff > 1) {
+                bars.push({ duration: diff });
+                // console.log(lookingStart);
                 lookingStart = dataTuples[i].timestamp;
+                // console.log(lookingStart);
               }
             }
           }
