@@ -6,30 +6,48 @@
   height: 100%;
   width: 100%;
   max-height: calc(100% - 80px); /*subtract the height of the footer */
-  overflow: auto;
+  overflow:auto;
 }
 .pictures {
   margin-left: 10%;
-  margin-top: 2%;
-  margin-bottom: 15%;
+  margin-top: 0%;
+  margin-bottom: 14%;
   height: 10%;
   width: 70%;
 }
 .piechart {
   align-self: flex-end;
   width: 40%;
+  height: 85%;
 }
 
 .piechart,
 .graph {
-  height: 90%;
   margin-bottom: 5%;
 }
 .graph {
   align-self: flex-end;
   margin-left: 20px;
-  width: 90%;
+  width: 60%;
+  height: 90%;
 }
+
+.tooltip {
+  position: absolute;
+  top:40%;
+  right:0%;
+  width:40%;
+  margin:10%;
+  margin-bottom: 40%;
+  background-color: rgba(0, 0, 0, 0.342);
+  color: white;
+  padding: 10px;
+  font-size: 1.3vw;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+
 .footer {
   align-self: flex-end;
 }
@@ -47,18 +65,31 @@
   font-size: 2.2vw;
 }
 
-/*@media only screen and (max-width: 600px) {
-  .wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-  .graph {
-    margin-left: 0;
-    margin-top: 20px;
-    align-self: center;
-  }
-  .piechart {
-    margin-bottom: 20px;
-    align-self: center;
-  }
-}*/
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form_input {
+  margin-top:10px;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  background: transparent;
+  background-color: #1b1919;
+  border: 0;
+  border: 1px solid #575858;
+  font-size: 1.2vw;
+  width: 150%;
+  border-radius: 10px;
+  margin-bottom: 0px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 3px;
+}

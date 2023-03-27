@@ -31,7 +31,6 @@ export default function Piechart(timeframe: { timeframe: string }) {
   ];
   return (
     <div className="pie-chart">
-      <h1>Overall</h1>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart /* width={250} height={250} */>
           <Pie

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import Graph from 'components/Graph';
 import Piechart from 'components/PieChart';
 import PostureForms from 'components/PostureForms';
@@ -41,6 +42,15 @@ export default function PosturePalPage() {
     setTimeframe(event.target.value);
   };
 
+  const [showText, setShowText] = useState(false);
+
+  const handleMouseOver = () => {
+    setShowText(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowText(false);
+  };
   return (
     <div className="container">
       <div className="form-row">
@@ -61,9 +71,22 @@ export default function PosturePalPage() {
         <div className="piechart">
           <Piechart timeframe={timeframe} />
         </div>
-        <div className="graph">
+        <div
+          className="graph"
+          onMouseOver={handleMouseOver}
+          onMouseLeave={handleMouseLeave}
+        >
           <p className="heading"> Your Posture Scoring</p>
           <Graph timeframe={timeframe} />
+          {showText && (
+            <div className="tooltip">
+              <p>
+                Your Posture Score is how good your posture is. The better the
+                posture the higher the score. This graph shows how your posture
+                changed during the selected time period.
+              </p>
+            </div>
+          )}
         </div>
       </div>
       <Footer />
