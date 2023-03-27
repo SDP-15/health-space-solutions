@@ -101,4 +101,4 @@ def score_and_upload(recording_time, visualise):
 
 if __name__ == "__main__":
     while True:
-        score_and_upload(5, True)
+        score_and_upload(5, False)
